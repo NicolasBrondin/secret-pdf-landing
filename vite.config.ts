@@ -6,5 +6,10 @@ export default defineConfig({
   plugins: [tailwindcss(), vue()],
   build: {
     outDir: 'docs'
-  }
+  },
+   resolve: {
+    alias: {
+      '@': '/src'
+    }
+  } 
 })

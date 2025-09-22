@@ -8,10 +8,7 @@
     <header class="flex items-center justify-between px-6 py-4 relative z-10">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-orange-500 rounded flex items-center justify-center">
-          <span class="text-white font-bold text-lg">🔒</span>
-        </div>
-        <span class="text-xl font-semibold">Secret</span>
+        <img src="@/assets/logo.svg" class="h-10"  />
       </div>
       
       <!-- Navigation -->
@@ -31,12 +28,10 @@
     <main class="relative">
       <!-- Background Wave -->
       <div class="absolute bottom-0 left-0 w-full">
-        <svg viewBox="0 0 1200 300" class="w-full h-auto text-gray-100">
-          <path d="M0,250 Q300,200 600,220 T1200,250 L1200,300 L0,300 Z" fill="currentColor"/>
-        </svg>
+        
       </div>
 
-      <div class="relative z-10 px-6 py-20 text-center max-w-6xl mx-auto">
+      <div class="relative z-10 px-6 py-20 text-center w-full max-w-6xl mx-auto">
         <!-- Main Heading -->
         <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
           Create PDFs with no one looking.
@@ -66,9 +61,12 @@
       </div>
 
       <!-- PDF Preview Mockup -->
-      <div class="relative z-20 flex justify-center px-6">
-        <div class="relative">
-          <!-- Security Badge -->
+      <div class="relative z-20 flex flex-col items-center mt-42 px-6 bg-white main-section">
+          
+
+          <!-- Template Preview -->
+          <div class="relative bg-green-100 p-8 rounded-lg shadow-2xl w-full max-w-md transform rotate-2 -mt-64">
+            <!-- Security Badge -->
           <div class="absolute -top-4 -right-4 z-30">
             <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
               <svg class="w-8 h-8 text-yellow-800" fill="currentColor" viewBox="0 0 24 24">
@@ -76,9 +74,6 @@
               </svg>
             </div>
           </div>
-
-          <!-- Template Preview -->
-          <div class="bg-green-100 p-8 rounded-lg shadow-2xl max-w-md transform rotate-2">
             <!-- Logo Placeholder -->
             <div class="text-center mb-6">
               <div class="inline-block px-8 py-3 bg-green-200 text-green-700 font-bold text-lg rounded">
@@ -112,7 +107,6 @@
               <span class="text-sm">Code your template with Tailwind</span>
             </div>
           </div>
-        </div>
       </div>
     </main>
   </div>
@@ -120,4 +114,17 @@
 
 <style scoped>
 /* Custom styles if needed */
+.main-section::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  width: 150%;
+  transform: translateX(-50%);
+  height: 400px;
+  background: white;
+  border-radius: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
 </style>
