@@ -4,6 +4,9 @@ import { ref } from 'vue'
 // Popup state
 const showWaitlistPopup = ref(false)
 
+// FAQ state
+const openFaqItems = ref<number[]>([])
+
 // Functions
 const openWaitlistPopup = () => {
   showWaitlistPopup.value = true
@@ -11,6 +14,19 @@ const openWaitlistPopup = () => {
 
 const closeWaitlistPopup = () => {
   showWaitlistPopup.value = false
+}
+
+const toggleFaq = (index: number) => {
+  const currentIndex = openFaqItems.value.indexOf(index)
+  if (currentIndex === -1) {
+    openFaqItems.value.push(index)
+  } else {
+    openFaqItems.value.splice(currentIndex, 1)
+  }
+}
+
+const isFaqOpen = (index: number) => {
+  return openFaqItems.value.includes(index)
 }
 </script>
 
@@ -27,6 +43,7 @@ const closeWaitlistPopup = () => {
       <nav class="hidden md:flex items-center space-x-8">
         <a href="#product" class="text-gray-300 hover:text-white transition-colors">Product</a>
         <a href="#pricing" class="text-gray-300 hover:text-white transition-colors">Pricing</a>
+        <a href="#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a>
         <!--<a href="#" class="text-gray-300 hover:text-white transition-colors">Resources</a>-->
       </nav>
       
@@ -442,6 +459,203 @@ const closeWaitlistPopup = () => {
             <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">24/7</div>
             <div class="text-gray-600">Support</div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="bg-white py-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Everything you need to know about our PDF API. Can't find the answer you're looking for? 
+            <button @click="openWaitlistPopup" class="text-blue-600 hover:text-blue-700 font-semibold underline">
+              Contact us
+            </button>
+          </p>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="space-y-4">
+          <!-- FAQ Item 1 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+              @click="toggleFaq(0)"
+              class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors flex items-center justify-between"
+            >
+              <span class="text-lg font-semibold text-gray-900">
+                How secure is your PDF generation service?
+              </span>
+              <svg 
+                :class="{ 'rotate-180': isFaqOpen(0) }" 
+                class="w-5 h-5 text-gray-500 transform transition-transform duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div 
+              v-show="isFaqOpen(0)"
+              class="px-6 pb-4 text-gray-600 leading-relaxed"
+            >
+              Our service is built with security at its core. We're GDPR and HIPAA/SOC2 compliant, use end-to-end encryption, and all documents are processed in isolated environments. Your data is never stored permanently - PDFs are generated and delivered securely without retention.
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+              @click="toggleFaq(1)"
+              class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors flex items-center justify-between"
+            >
+              <span class="text-lg font-semibold text-gray-900">
+                What templating languages do you support?
+              </span>
+              <svg 
+                :class="{ 'rotate-180': isFaqOpen(1) }" 
+                class="w-5 h-5 text-gray-500 transform transition-transform duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div 
+              v-show="isFaqOpen(1)"
+              class="px-6 pb-4 text-gray-600 leading-relaxed"
+            >
+              We support standard HTML/CSS with full Tailwind CSS support. You can use any HTML templating engine on your end - just send us the final HTML and we'll convert it to a high-quality PDF. We also provide pre-built templates for common use cases like invoices, reports, and certificates.
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+              @click="toggleFaq(2)"
+              class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors flex items-center justify-between"
+            >
+              <span class="text-lg font-semibold text-gray-900">
+                How fast is the PDF generation?
+              </span>
+              <svg 
+                :class="{ 'rotate-180': isFaqOpen(2) }" 
+                class="w-5 h-5 text-gray-500 transform transition-transform duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div 
+              v-show="isFaqOpen(2)"
+              class="px-6 pb-4 text-gray-600 leading-relaxed"
+            >
+              Most PDFs are generated in under 2 seconds. Our infrastructure is optimized for speed with global edge locations, ensuring low latency regardless of your location. For high-volume usage, we offer batch processing and priority queues.
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+              @click="toggleFaq(3)"
+              class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors flex items-center justify-between"
+            >
+              <span class="text-lg font-semibold text-gray-900">
+                Do you offer a free trial?
+              </span>
+              <svg 
+                :class="{ 'rotate-180': isFaqOpen(3) }" 
+                class="w-5 h-5 text-gray-500 transform transition-transform duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div 
+              v-show="isFaqOpen(3)"
+              class="px-6 pb-4 text-gray-600 leading-relaxed"
+            >
+              Yes! We offer a 30-day free trial with 100 PDF generations to test our service. No credit card required to start. You can upgrade to a paid plan at any time, and we offer a 30-day money-back guarantee on all subscriptions.
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+              @click="toggleFaq(4)"
+              class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors flex items-center justify-between"
+            >
+              <span class="text-lg font-semibold text-gray-900">
+                Can I customize the PDF output format?
+              </span>
+              <svg 
+                :class="{ 'rotate-180': isFaqOpen(4) }" 
+                class="w-5 h-5 text-gray-500 transform transition-transform duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div 
+              v-show="isFaqOpen(4)"
+              class="px-6 pb-4 text-gray-600 leading-relaxed"
+            >
+              Absolutely! You can specify page size (A4, Letter, Legal, custom), orientation (portrait/landscape), margins, headers, footers, and metadata. We also support features like page numbering, watermarks, password protection, and digital signatures.
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+              @click="toggleFaq(5)"
+              class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors flex items-center justify-between"
+            >
+              <span class="text-lg font-semibold text-gray-900">
+                What's your SLA and support like?
+              </span>
+              <svg 
+                :class="{ 'rotate-180': isFaqOpen(5) }" 
+                class="w-5 h-5 text-gray-500 transform transition-transform duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div 
+              v-show="isFaqOpen(5)"
+              class="px-6 pb-4 text-gray-600 leading-relaxed"
+            >
+              We guarantee 99.9% uptime with our SLA. Our support team is available 24/7 for Pro plan users, and we offer priority support with guaranteed response times. Starter plan users get email support with responses within 24 hours during business days.
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA at bottom -->
+        <div class="text-center mt-12">
+          <p class="text-gray-600 mb-6">Ready to get started with our PDF API?</p>
+          <button 
+            @click="openWaitlistPopup"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center"
+          >
+            Join the Waitlist
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </button>
         </div>
       </div>
     </section>
