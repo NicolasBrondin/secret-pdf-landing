@@ -302,6 +302,68 @@ const isFaqOpen = (index: number) => {
           </div>
         </div>
 
+        <!-- Credits Explanation -->
+        <div class="max-w-3xl mx-auto mt-16 mb-12">
+          <div class="text-center mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">How Credits Work</h3>
+            <p class="text-gray-600">Transparent pricing based on your usage and file complexity</p>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <!-- Standard PDFs -->
+            <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+              <div class="flex items-center justify-center w-12 h-12 bg-green-500 rounded-full mb-4 mx-auto">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">Standard PDFs</h4>
+                <div class="text-2xl font-bold text-green-600 mb-2">1 Credit</div>
+                <p class="text-sm text-gray-600">For PDF generation under 2MB</p>
+              </div>
+            </div>
+
+            <!-- Large PDFs -->
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+              <div class="flex items-center justify-center w-12 h-12 bg-blue-500 rounded-full mb-4 mx-auto">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">Large PDFs</h4>
+                <div class="text-2xl font-bold text-blue-600 mb-2">2 Credits</div>
+                <p class="text-sm text-gray-600">For PDF generation above 2MB</p>
+              </div>
+            </div>
+
+            <!-- Editable PDFs -->
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+              <div class="flex items-center justify-center w-12 h-12 bg-purple-500 rounded-full mb-4 mx-auto">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                </svg>
+              </div>
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">Editable PDFs</h4>
+                <div class="text-2xl font-bold text-purple-600 mb-2">3 Credits</div>
+                <p class="text-sm text-gray-600">For interactive and editable PDFs</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Note -->
+          <div class="text-center mt-8 p-4 bg-gray-50 rounded-lg">
+            <p class="text-sm text-gray-600">
+              <svg class="w-4 h-4 text-blue-500 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              Credits are only consumed for successful PDF generations. Failed requests don't use credits.
+            </p>
+          </div>
+        </div>
+
         <!-- Additional Info -->
         <div class="text-center mt-12">
           <!-- Credits explanation -->
