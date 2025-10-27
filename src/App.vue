@@ -184,15 +184,14 @@ const isFaqOpen = (index: number) => {
         </div>
 
         <!-- Pricing Cards -->
-        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="flex items-start gap-8 max-w-4xl mx-auto">
           <!-- Starter Plan -->
-          <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="flex-1 bg-white border-2 border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
             <div class="text-center mb-8">
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+              <h3 class="text-2xl font-bold text-gray-900 mb-0">Starter</h3>
               <p class="text-gray-600 mb-6">Perfect for small projects and testing</p>
               <div class="flex items-baseline justify-center">
-                <span class="text-4xl font-bold text-gray-900">$19</span>
-                <span class="text-gray-600 ml-2">/month</span>
+                <span class="text-4xl font-bold text-gray-900">Free</span>
               </div>
             </div>
 
@@ -201,25 +200,31 @@ const isFaqOpen = (index: number) => {
                 <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="text-gray-700">1,000 PDF generations/month</span>
+                <span class="text-gray-700">10 PDF generations/month</span>
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="text-gray-700">Basic templates</span>
+                <span class="text-gray-700">Craft your own templates with TailwindCSS</span>
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="text-gray-700">Email support</span>
+                <span class="text-gray-700">Use any JavaScript library you want (Charts, Maps, etc.)</span>
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="text-gray-700">99.9% uptime SLA</span>
+                <span class="text-gray-700">API Access</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-gray-700">Unlimited test pdfs (watermarked)</span>
               </li>
             </ul>
 
@@ -232,7 +237,7 @@ const isFaqOpen = (index: number) => {
           </div>
 
           <!-- Pro Plan -->
-          <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow relative">
+          <div class="flex-1 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow relative">
             <!-- Popular Badge -->
             <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <span class="bg-yellow-400 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">
@@ -241,11 +246,11 @@ const isFaqOpen = (index: number) => {
             </div>
 
             <div class="text-center mb-8">
-              <h3 class="text-2xl font-bold text-white mb-2">Pro</h3>
-              <p class="text-blue-100 mb-6">For growing businesses and teams</p>
+              <h3 class="text-2xl font-bold text-white mb-0">Pro</h3>
+              <p class="text-blue-100 mb-6">For production</p>
               <div class="flex items-baseline justify-center">
-                <span class="text-4xl font-bold text-white">$49</span>
-                <span class="text-blue-100 ml-2">/month</span>
+                <span class="text-4xl font-bold text-white">$0,01</span>
+                <span class="text-blue-100 ml-2">/ credit</span>
               </div>
             </div>
 
@@ -254,13 +259,25 @@ const isFaqOpen = (index: number) => {
                 <svg class="w-5 h-5 text-blue-200 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="text-white">10,000 PDF generations/month</span>
+                <span class="text-white">Unlimited generations/month</span>
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-blue-200 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="text-white">Premium templates</span>
+                <span class="text-white">Store documents on your own server (S3, sftp,...)</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-blue-200 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-white">AI-generated templates (beta)</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-blue-200 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-white">Editable pdfs (soon)</span>
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-blue-200 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -272,13 +289,7 @@ const isFaqOpen = (index: number) => {
                 <svg class="w-5 h-5 text-blue-200 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="text-white">Custom branding</span>
-              </li>
-              <li class="flex items-center">
-                <svg class="w-5 h-5 text-blue-200 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-                <span class="text-white">Advanced analytics</span>
+                <span class="text-white">99.9% uptime SLA</span>
               </li>
             </ul>
 
@@ -293,9 +304,7 @@ const isFaqOpen = (index: number) => {
 
         <!-- Additional Info -->
         <div class="text-center mt-12">
-          <p class="text-gray-600 mb-4">
-            Need more? <a href="#" class="text-blue-600 hover:text-blue-700 font-semibold">Contact us</a> for enterprise pricing.
-          </p>
+          <!-- Credits explanation -->
           <div class="flex items-center justify-center space-x-6 text-sm text-gray-500">
             <div class="flex items-center">
               <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -444,8 +453,8 @@ const isFaqOpen = (index: number) => {
         <!-- Stats Section -->
         <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">50K+</div>
-            <div class="text-gray-600">PDFs Generated</div>
+            <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2"><2 secs.</div>
+            <div class="text-gray-600">PDF generation</div>
           </div>
           <div>
             <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">99.9%</div>
