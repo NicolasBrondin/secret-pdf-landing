@@ -45,7 +45,7 @@
         </button>
       </div>
     </div>
-    <img src="@/assets/img/icons/monkey.svg" class="absolute z-10 top-2/3 left-full w-32 -translate-x-2 rotate-12" style="transform-origin: top left;"/>
+    <img src="@/assets/img/icons/monkey.svg" class="monkey-swing absolute z-10 top-2/3 left-full w-32 -translate-x-2" style="transform-origin: top left;"/>
 </div>
     <!-- Code Template Notes -->
     <div class="absolute z-30 -top-32 left-1/8 bg-white bg-opacity-90 rounded-lg p-4 shadow-lg max-w-xs">
@@ -92,4 +92,19 @@ defineEmits<{
   pointer-events: none;
   z-index: -1;
 }
+
+.monkey-swing {
+  animation: swing 2s ease-in-out 5 forwards;
+}
+
+@keyframes swing {
+  0%, 100% {
+    transform: translateX(-0.5rem) rotate(16deg);
+  }
+  50% {
+    transform: translateX(-0.5rem) rotate(0deg);
+  }
+}
+
+
 </style>
