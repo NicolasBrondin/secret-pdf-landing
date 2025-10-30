@@ -47,6 +47,32 @@
     </div>
     <img src="@/assets/img/icons/monkey.svg" class="monkey-swing absolute z-10 top-2/3 left-full w-32 -translate-x-2" style="transform-origin: top left;"/>
 </div>
+
+    <!-- PDF Examples Buttons -->
+    <div class="mt-16 mb-8">
+      <h3 class="text-center text-gray-700 text-lg font-semibold mb-6">See PDF Examples</h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button 
+          class="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+          @click="openPdfExample('invoice')"
+        >
+          📄 Invoice Template
+        </button>
+        <button 
+          class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+          @click="openPdfExample('certificate')"
+        >
+          🏆 Certificate Template
+        </button>
+        <button 
+          class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+          @click="openPdfExample('report')"
+        >
+          📊 Report Template
+        </button>
+      </div>
+    </div>
+
     <!-- Code Template Notes -->
     <div class="absolute z-30 -top-32 left-1/8 bg-white bg-opacity-90 rounded-lg p-4 shadow-lg max-w-xs">
       <div class="flex items-center space-x-2 text-gray-600">
@@ -76,6 +102,19 @@
 defineEmits<{
   openWaitlist: []
 }>()
+
+// Function to open PDF examples
+const openPdfExample = (type: string) => {
+  // You can replace these URLs with actual PDF examples
+  const pdfUrls = {
+    invoice: '/examples/invoice.pdf',
+    certificate: '/examples/certificate.pdf', 
+    report: '/examples/report.pdf'
+  }
+  
+  // Open the PDF in a new tab
+  window.open(pdfUrls[type as keyof typeof pdfUrls], '_blank')
+}
 </script>
 
 <style scoped>
