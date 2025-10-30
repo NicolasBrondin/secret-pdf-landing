@@ -16,11 +16,11 @@
       
       <!-- HTML → PDF Badge -->
       <div class="inline-flex items-center space-x-3 mb-8">
-        <span class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium">HTML</span>
+        <span class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold">HTML</span>
         <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
-        <span class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium">PDF</span>
+        <span class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold">PDF</span>
       </div>
 
       <!-- Compliance Badge -->

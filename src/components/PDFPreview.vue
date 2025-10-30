@@ -45,12 +45,12 @@
         </button>
       </div>
     </div>
-    <img src="@/assets/img/icons/monkey.svg" class="monkey-swing absolute z-10 top-2/3 left-full w-32 -translate-x-2" style="transform-origin: top left;"/>
+    <img src="@/assets/img/icons/monkey.svg" class="monkey-swing absolute z-10 top-2/3 left-full w-32 -translate-x-2" style="transform-origin: top left;" alt=""/>
 </div>
 
     <!-- PDF Examples Buttons -->
     <div class="mt-16 mb-8">
-      <h3 class="text-center text-gray-700 text-lg font-semibold mb-6">See PDF Examples</h3>
+      <p class="text-center text-gray-700 text-lg font-semibold mb-6">See PDF Examples</p>
       <div class="flex flex-wrap justify-center gap-4">
         <button 
           class="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
@@ -76,21 +76,21 @@
     <!-- Code Template Notes -->
     <div class="absolute z-30 -top-32 left-1/8 bg-white bg-opacity-90 rounded-lg p-4 shadow-lg max-w-xs">
       <div class="flex items-center space-x-2 text-gray-600">
-        <img src="@/assets/img/icons/code.svg" class="h-5"/>
+        <img src="@/assets/img/icons/code.svg" class="h-5" alt=""/>
         <span class="text-sm">Generate your pdf with one API call</span>
       </div>
     </div>
 
     <div class="absolute z-30 top-8 right-1/8 bg-white bg-opacity-90 rounded-lg p-4 shadow-lg max-w-xs">
       <div class="flex items-center space-x-2 text-gray-600">
-        <img src="@/assets/img/icons/tailwindcss.svg" class="h-3"/>
+        <img src="@/assets/img/icons/tailwindcss.svg" class="h-3" alt=""/>
         <span class="text-sm">Code your template with Tailwind</span>
       </div>
     </div>
 
     <div class="absolute z-30 top-36 left-1/5 bg-white bg-opacity-90 rounded-lg p-4 shadow-lg max-w-xs">
       <div class="flex items-center space-x-2 text-gray-600">
-        <img src="@/assets/img/icons/unlock.svg" class="h-5"/>
+        <img src="@/assets/img/icons/unlock.svg" class="h-5" alt=""/>
         <span class="text-sm">Keep your customer's data private</span>
       </div>
     </div>

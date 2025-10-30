@@ -2,7 +2,7 @@
   <header class="flex items-center justify-between px-6 py-4 relative z-10">
     <!-- Logo -->
     <div class="flex items-center space-x-2">
-      <img src="@/assets/logo.svg" class="h-10" />
+      <img src="@/assets/logo.svg" class="h-10" alt="" />
     </div>
     
     <!-- Navigation -->
