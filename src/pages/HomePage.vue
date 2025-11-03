@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import AppHeader from './AppHeader.vue'
-import HeroSection from './HeroSection.vue'
-import PDFPreview from './PDFPreview.vue'
-import PricingSection from './PricingSection.vue'
-import TestimonialsSection from './TestimonialsSection.vue'
-import FAQSection from './FAQSection.vue'
-import AppFooter from './AppFooter.vue'
-import WaitlistModal from './WaitlistModal.vue'
+import AppHeader from '../components/AppHeader.vue'
+import HeroSection from '../components/HeroSection.vue'
+import PDFPreview from '../components/PDFPreview.vue'
+import PricingSection from '../components/PricingSection.vue'
+import TestimonialsSection from '../components/TestimonialsSection.vue'
+import FAQSection from '../components/FAQSection.vue'
+import AppFooter from '../components/AppFooter.vue'
+import WaitlistModal from '../components/WaitlistModal.vue'
 
 // Popup state
 const showWaitlistPopup = ref(false)
