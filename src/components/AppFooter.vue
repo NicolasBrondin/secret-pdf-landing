@@ -14,13 +14,13 @@
             <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
             <span>Status</span>
           </a>
-          <!--<a href="/privacy" class="hover:text-white transition-colors duration-200">Privacy Policy</a>-->
-          <!--<a href="/terms" class="hover:text-white transition-colors duration-200">Terms of Service</a>-->
+          <router-link to="/privacy" class="hover:text-white transition-colors duration-200">Privacy Policy</router-link>
+          <router-link to="/legal" class="hover:text-white transition-colors duration-200">Legal Mentions</router-link>
         </div>
         
         <!-- Copyright -->
         <p class="text-sm">
-          © {{ new Date().getFullYear() }} Secret. All rights reserved.
+          © {{ new Date().getFullYear() }} - Secret. All rights reserved.
         </p>
       </div>
     </div>
