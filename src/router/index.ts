@@ -57,6 +57,20 @@ router.afterEach(() => {
   setTimeout(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }, 100)
+});
+
+
+router.isReady().then(() => {
+  const params = new URLSearchParams(window.location.search)
+  const redirect = params.get('redirect')
+  if (redirect) {
+    // clean the URL first (optional)
+    const url = new URL(window.location.href)
+    url.searchParams.delete('redirect')
+    window.history.replaceState({}, '', url.pathname + url.hash)
+
+    router.replace(redirect)
+  }
 })
 
 export default router
