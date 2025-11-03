@@ -30,21 +30,33 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(_to, _from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0 }
+  /*scrollBehavior(_to, _from, savedPosition) {
+    // If user navigated with back/forward buttons, restore scroll position
+    
+    
+    // For new navigation, scroll to top with smooth behavior
+    return { 
+      top: 0, 
+      left: 0,
+      behavior: 'smooth' 
     }
-  }
+  }*/
 })
 
-// Update document title based on route meta
+// Update document title and ensure scroll to top
 router.beforeEach((to, _from, next) => {
   if (to.meta?.title) {
     document.title = to.meta.title as string
   }
   next()
+})
+
+// Additional scroll to top after route change (fallback)
+router.afterEach(() => {
+  // Use nextTick to ensure DOM is updated
+  setTimeout(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }, 100)
 })
 
 export default router
