@@ -52,11 +52,13 @@ router.beforeEach((to, _from, next) => {
 })
 
 // Additional scroll to top after route change (fallback)
-router.afterEach(() => {
-  // Use nextTick to ensure DOM is updated
-  setTimeout(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-  }, 100)
+router.afterEach((to, from) => {
+  // Only scroll to top if navigating to a different page (not just anchor changes)
+  if (to.path !== from.path) {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }, 100)
+  }
 });
 
 
