@@ -2,18 +2,18 @@
   <main class="relative pt-16 pb-24 ">
     <div class="relative z-10 px-6 py-20 text-center w-full max-w-6xl mx-auto">
       <!-- Announcement Badge -->
-      <div class="inline-flex items-center gap-2 bg-gradient-to-r from-violet-500/20 to-indigo-500/20 border border-violet-500/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
+      <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-400/20 to-indigo-500/20 border border-blue-400/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
         <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
         </span>
-        <span class="text-sm text-violet-200">Now in public beta</span>
+        <span class="text-sm text-blue-200">Now in public beta</span>
       </div>
 
       <!-- Main Heading -->
       <h1 class="flex flex-col  font-bold mb-6 leading-tight tracking-tight">
         <span class="text-5xl md:text-7xl bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">Just. Generate. PDFs.</span>
-        <span class="text-3xl md:text-5xl bg-gradient-to-r from-violet-500 to-indigo-600 bg-clip-text text-transparent">One api call. Zero hassle.</span>
+        <span class="text-3xl md:text-5xl bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">One api call. Zero hassle.</span>
       </h1>
       
       <!-- Subtitle -->
@@ -23,11 +23,11 @@
       
       <!-- HTML → PDF Badge -->
       <div class="inline-flex items-center gap-4 mb-10 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 backdrop-blur-sm">
-        <span class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg">HTML</span>
-        <svg class="w-8 h-8 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <span class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg">HTML</span>
+        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
-        <span class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg">PDF</span>
+        <span class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg">PDF</span>
       </div>
 
       <!-- Compliance Badges -->

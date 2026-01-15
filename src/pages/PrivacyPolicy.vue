@@ -176,7 +176,7 @@
               </p>
               <p class="mb-2">
                 <strong>Contact:</strong> For privacy-related questions, please contact us at 
-                <a href="mailto:intrigued@the49.com" class="text-blue-600 hover:text-blue-800">intrigued@the49.com</a>
+                <a href="mailto:intrigued@the49.com" class="text-blue-500 hover:text-blue-800">intrigued@the49.com</a>
               </p>
               <p>
                 <strong>Effective Date:</strong> November 2025

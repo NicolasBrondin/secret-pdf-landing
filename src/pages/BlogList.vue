@@ -84,7 +84,7 @@ function updateMetaTag(property: string, content: string) {
               </div>
 
               <!-- Title -->
-              <h2 class="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-3">
+              <h2 class="text-2xl font-bold text-gray-900 group-hover:text-blue-500 transition-colors mb-3">
                 {{ post.title }}
               </h2>
 

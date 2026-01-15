@@ -2,8 +2,8 @@
   <header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300">
     <div class="max-w-7xl mx-auto">
       <div 
-        class="flex items-center justify-between backdrop-blur-xl rounded-2xl px-6 py-3 shadow-lg border transition-all duration-300"
-        :class="isScrolled ? 'bg-white/95 border-gray-200 shadow-gray-200/50' : 'bg-white/10 border-white/20'"
+        class="flex items-center justify-between backdrop-blur-xl rounded-2xl px-6 py-3 border transition-all duration-300"
+        :class="isScrolled ? 'bg-white/95 border-gray-200 shadow-sm' : 'bg-white/10 border-white/20 shadow-lg'"
       >
         <!-- Logo -->
         <router-link to="/" class="flex items-center space-x-2">
@@ -42,7 +42,7 @@
         <!-- Join Waitlist Button -->
         <button 
           @click="$emit('openWaitlist')"
-          class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-105"
+          class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white font-medium px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-blue-400/25 hover:shadow-blue-400/40 hover:scale-105"
         >
           Join Waitlist
         </button>

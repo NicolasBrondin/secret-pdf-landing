@@ -4,8 +4,8 @@
     <div class="max-w-4xl mx-auto">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 bg-violet-100 rounded-full px-4 py-2 mb-6">
-          <span class="text-violet-700 text-sm font-semibold">FAQ</span>
+        <div class="inline-flex items-center gap-2 bg-blue-100 rounded-full px-4 py-2 mb-6">
+          <span class="text-blue-700 text-sm font-semibold">FAQ</span>
         </div>
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           Frequently Asked Questions
@@ -20,7 +20,7 @@
         <div 
           v-for="(faq, index) in faqItems" 
           :key="index"
-          class="bg-slate-50 border border-gray-200 rounded-2xl overflow-hidden hover:border-violet-300 transition-colors"
+          class="bg-slate-50 border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-300 transition-colors"
         >
           <button 
             @click="toggleFaq(index)"
@@ -29,9 +29,9 @@
             <span class="text-lg font-semibold text-gray-900">
               {{ faq.question }}
             </span>
-            <div class="w-8 h-8 bg-violet-100 rounded-full flex items-center justify-center flex-shrink-0 ml-4 transition-transform" :class="{ 'rotate-180': isFaqOpen(index) }">
+            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 ml-4 transition-transform" :class="{ 'rotate-180': isFaqOpen(index) }">
               <svg 
-                class="w-4 h-4 text-violet-600" 
+                class="w-4 h-4 text-blue-500" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -50,12 +50,12 @@
       </div>
 
       <!-- CTA at bottom -->
-      <div class="text-center mt-16 p-10 bg-gradient-to-br from-violet-600 via-indigo-600 to-purple-700 rounded-3xl">
+      <div class="text-center mt-16 p-10 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 rounded-3xl">
         <h3 class="text-2xl font-bold text-white mb-3">Ready to get started?</h3>
-        <p class="text-violet-200 mb-6">Join our waitlist and be the first to experience it.</p>
+        <p class="text-emerald-100 mb-6">Join our waitlist and be the first to experience it.</p>
         <button 
           @click="$emit('openWaitlist')"
-          class="bg-white hover:bg-gray-50 text-violet-700 font-semibold py-4 px-8 rounded-xl transition-all duration-200 hover:shadow-lg inline-flex items-center"
+          class="bg-white hover:bg-gray-50 text-emerald-700 font-semibold py-4 px-8 rounded-xl transition-all duration-200 hover:shadow-lg inline-flex items-center"
         >
           Join the Waitlist
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

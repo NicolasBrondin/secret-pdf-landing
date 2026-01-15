@@ -3,10 +3,10 @@
   <div class="relative z-20 flex flex-col items-center mt-42 px-6 pb-20 bg-gradient-to-b from-slate-50 to-white main-section">
     <!-- Template Preview -->
      <div class="relative w-full max-w-md -mt-64">
-    <div class="relative z-20 bg-gradient-to-br from-violet-50 to-indigo-50 p-8 rounded-2xl shadow-2xl w-full transform rotate-2 border border-violet-100">
+    <div class="relative z-20 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-2xl w-full transform rotate-2 border border-blue-100">
       <!-- Security Badge -->
       <div class="absolute -top-4 -right-4 z-30">
-        <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-violet-500/30">
+        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-400/30">
           <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
             <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
@@ -15,23 +15,23 @@
       
       <!-- Logo Placeholder -->
       <div class="text-center mb-6">
-        <div class="inline-block px-8 py-3 bg-gradient-to-r from-violet-200 to-indigo-200 text-violet-700 font-bold text-lg rounded-xl">
+        <div class="inline-block px-8 py-3 bg-gradient-to-r from-blue-200 to-indigo-200 text-blue-700 font-bold text-lg rounded-xl">
           YOUR LOGO
         </div>
       </div>
       
       <!-- Form Fields -->
       <div class="space-y-4">
-        <div class="h-6 bg-gradient-to-r from-violet-200/60 to-indigo-200/60 rounded-lg"></div>
-        <div class="h-4 bg-violet-200/50 rounded-lg w-3/4"></div>
+        <div class="h-6 bg-gradient-to-r from-blue-200/60 to-indigo-200/60 rounded-lg"></div>
+        <div class="h-4 bg-blue-200/50 rounded-lg w-3/4"></div>
         <div class="h-4 bg-indigo-200/50 rounded-lg w-full"></div>
-        <div class="h-4 bg-violet-200/50 rounded-lg w-2/3"></div>
-        <div class="h-20 bg-gradient-to-br from-violet-200/40 to-indigo-200/40 rounded-xl"></div>
+        <div class="h-4 bg-blue-200/50 rounded-lg w-2/3"></div>
+        <div class="h-20 bg-gradient-to-br from-blue-200/40 to-indigo-200/40 rounded-xl"></div>
       </div>
       <div class="space-y-4 mt-4">
-        <div class="h-6 bg-gradient-to-r from-indigo-200/60 to-violet-200/60 rounded-lg"></div>
+        <div class="h-6 bg-gradient-to-r from-indigo-200/60 to-blue-200/60 rounded-lg"></div>
         <div class="h-4 bg-indigo-200/50 rounded-lg w-3/4"></div>
-        <div class="h-4 bg-violet-200/50 rounded-lg w-full"></div>
+        <div class="h-4 bg-blue-200/50 rounded-lg w-full"></div>
         <div class="h-4 bg-indigo-200/50 rounded-lg w-2/3"></div>
       </div>
 
@@ -39,7 +39,7 @@
       <div class="mt-8 text-center">
         <button 
           @click="$emit('openWaitlist')"
-          class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 hover:scale-105"
+          class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all shadow-lg shadow-blue-400/30 hover:shadow-blue-400/50 hover:scale-105"
         >
           Try me !
         </button>
@@ -54,21 +54,21 @@
       <div class="flex flex-wrap justify-center gap-6">
         <!-- Invoice -->
         <button 
-          class="group relative bg-gradient-to-br from-white to-violet-50/50 hover:from-violet-50 hover:to-indigo-50 border border-gray-200/80 hover:border-violet-300 px-8 py-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-violet-200/50 overflow-hidden"
+          class="group relative bg-gradient-to-br from-white to-blue-50/50 hover:from-blue-50 hover:to-indigo-50 border border-gray-200/80 hover:border-blue-300 px-8 py-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-blue-200/50 overflow-hidden"
           @click="openPdfExample('invoice')"
         >
-          <div class="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="relative flex items-center gap-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30 group-hover:scale-110 transition-transform">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-400/30 group-hover:scale-110 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
             </div>
             <div class="text-left">
-              <span class="block text-gray-900 font-semibold group-hover:text-violet-700 transition-colors">Invoice</span>
+              <span class="block text-gray-900 font-semibold group-hover:text-blue-700 transition-colors">Invoice</span>
               <span class="block text-gray-500 text-sm">Professional billing</span>
             </div>
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-violet-500 group-hover:translate-x-1 transition-all ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-400 group-hover:translate-x-1 transition-all ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
           </div>
@@ -123,7 +123,7 @@
     <!-- Code Template Notes -->
     <div class="absolute z-30 -top-32 left-1/8 backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl p-4 shadow-xl max-w-xs">
       <div class="flex items-center space-x-3 text-gray-700">
-        <div class="w-10 h-10 bg-gradient-to-br from-violet-100 to-indigo-100 rounded-xl flex items-center justify-center">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center">
           <img src="@/assets/img/icons/code.svg" class="h-5" alt=""/>
         </div>
         <span class="text-sm font-medium">Generate your pdf with one API call</span>

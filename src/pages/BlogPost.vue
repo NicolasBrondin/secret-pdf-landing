@@ -108,7 +108,7 @@ watch(() => route.params.slug, () => {
       <div class="max-w-3xl mx-auto">
         <!-- Breadcrumb -->
         <nav class="mb-6">
-          <router-link to="/blog" class="text-blue-600 hover:text-blue-800 transition-colors">
+          <router-link to="/blog" class="text-blue-500 hover:text-blue-800 transition-colors">
             ← Back to Blog
           </router-link>
         </nav>
@@ -143,7 +143,7 @@ watch(() => route.params.slug, () => {
     <!-- Article Content -->
     <article class="py-12 px-6">
       <div 
-        class="max-w-3xl mx-auto prose prose-lg prose-slate prose-headings:font-bold prose-a:text-blue-600 prose-code:bg-slate-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:text-slate-100"
+        class="max-w-3xl mx-auto prose prose-lg prose-slate prose-headings:font-bold prose-a:text-blue-500 prose-code:bg-slate-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:text-slate-100"
         v-html="renderedContent"
       />
     </article>
@@ -159,7 +159,7 @@ watch(() => route.params.slug, () => {
         </p>
         <router-link 
           to="/#pricing"
-          class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+          class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
         >
           Get Started
         </router-link>
@@ -176,7 +176,7 @@ watch(() => route.params.slug, () => {
       <p class="text-gray-600 mb-8">The article you're looking for doesn't exist.</p>
       <router-link 
         to="/blog"
-        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+        class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
       >
         Back to Blog
       </router-link>

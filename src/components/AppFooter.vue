@@ -5,8 +5,7 @@
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <!-- Logo & Copyright -->
         <div class="flex items-center gap-3">
-          <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-lg"></div>
-          <span class="text-white font-semibold">Secret</span>
+          <img src="@/assets/logo.svg" class="h-8" alt="Secret PDF" />
         </div>
 
         <!-- Links -->
