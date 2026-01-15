@@ -9,6 +9,7 @@
     <nav class="hidden md:flex items-center space-x-8">
       <a href="#product" class="text-gray-300 hover:text-white transition-colors">Product</a>
       <a href="#pricing" class="text-gray-300 hover:text-white transition-colors">Pricing</a>
+      <a href="#testimonials" class="text-gray-300 hover:text-white transition-colors">Testimonials</a>
       <a href="#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a>
     </nav>
     

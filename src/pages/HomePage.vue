@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import AppHeader from '../components/AppHeader.vue'
 import HeroSection from '../components/HeroSection.vue'
 import PDFPreview from '../components/PDFPreview.vue'
+import CarbonNeutralSection from '../components/CarbonNeutralSection.vue'
 import PricingSection from '../components/PricingSection.vue'
 import TestimonialsSection from '../components/TestimonialsSection.vue'
 import FAQSection from '../components/FAQSection.vue'
@@ -29,6 +30,9 @@ const openWaitlistPopup = () => {
     <!-- PDF Preview -->
     <PDFPreview @open-waitlist="openWaitlistPopup" />
   </div>
+
+  <!-- Carbon Neutral Section -->
+  <CarbonNeutralSection />
 
   <!-- Pricing Section -->
   <PricingSection @open-waitlist="openWaitlistPopup" />

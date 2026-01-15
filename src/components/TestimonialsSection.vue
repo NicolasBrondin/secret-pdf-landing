@@ -1,6 +1,6 @@
 <template>
   <!-- Testimonials Section -->
-  <section class="bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-6">
+  <section id="testimonials" class="bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-6">
     <div class="max-w-6xl mx-auto">
       <!-- Section Header -->
       <div class="text-center mb-16">
@@ -128,8 +128,8 @@ const stats: Stat[] = [
     label: "Uptime"
   },
   {
-    value: "Fortune 500",
-    label: "service provider"
+    value: "0g CO₂",
+    label: "Carbon neutral"
   },
   {
     value: "24/7",
