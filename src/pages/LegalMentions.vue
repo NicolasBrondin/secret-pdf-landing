@@ -22,7 +22,7 @@
             <div class="bg-gray-50 p-6 rounded-lg">
               <p><strong>Company Name:</strong> The49 Ltd</p>
               <p><strong>Service:</strong> Secret - PDF Generation Service</p>
-              <p><strong>Website:</strong> <a href="https://secretpdf.io" class="text-blue-600 hover:text-blue-800">https://secretpdf.io</a></p>
+              <p><strong>Website:</strong> <a href="https://secretpdf.io" class="text-blue-500 hover:text-blue-800">https://secretpdf.io</a></p>
             </div>
           </section>
 
@@ -73,7 +73,7 @@
             <h2 class="text-2xl font-semibold text-gray-900 mb-4">Contact Information</h2>
             <p>
               For any questions regarding these legal mentions or our service, please contact us through 
-              our official website at <a href="https://secretpdf.io" class="text-blue-600 hover:text-blue-800">secretpdf.io</a>.
+              our official website at <a href="https://secretpdf.io" class="text-blue-500 hover:text-blue-800">secretpdf.io</a>.
             </p>
           </section>
 

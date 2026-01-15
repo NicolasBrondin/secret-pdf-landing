@@ -2,12 +2,27 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import LegalMentions from '../pages/LegalMentions.vue'
 import PrivacyPolicy from '../pages/PrivacyPolicy.vue'
+import BlogList from '../pages/BlogList.vue'
+import BlogPost from '../pages/BlogPost.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: HomePage
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: BlogList,
+    meta: {
+      title: 'Blog - Secret PDF'
+    }
+  },
+  {
+    path: '/blog/:slug',
+    name: 'BlogPost',
+    component: BlogPost
   },
   {
     path: '/legal',

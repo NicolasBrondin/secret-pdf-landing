@@ -1,9 +1,12 @@
 <template>
   <!-- FAQ Section -->
-  <section id="faq" class="bg-white py-20 px-6">
+  <section id="faq" class="bg-white py-24 px-6 relative">
     <div class="max-w-4xl mx-auto">
       <!-- Section Header -->
       <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-blue-100 rounded-full px-4 py-2 mb-6">
+          <span class="text-blue-700 text-sm font-semibold">FAQ</span>
+        </div>
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           Frequently Asked Questions
         </h2>
@@ -17,28 +20,29 @@
         <div 
           v-for="(faq, index) in faqItems" 
           :key="index"
-          class="border border-gray-200 rounded-lg overflow-hidden"
+          class="bg-slate-50 border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-300 transition-colors"
         >
           <button 
             @click="toggleFaq(index)"
-            class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors flex items-center justify-between"
+            class="w-full px-6 py-5 text-left hover:bg-slate-100 focus:outline-none transition-colors flex items-center justify-between"
           >
             <span class="text-lg font-semibold text-gray-900">
               {{ faq.question }}
             </span>
-            <svg 
-              :class="{ 'rotate-180': isFaqOpen(index) }" 
-              class="w-5 h-5 text-gray-500 transform transition-transform duration-200" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
+            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 ml-4 transition-transform" :class="{ 'rotate-180': isFaqOpen(index) }">
+              <svg 
+                class="w-4 h-4 text-blue-500" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
           </button>
           <div 
             v-show="isFaqOpen(index)"
-            class="px-6 pb-4 pt-2 text-gray-600 leading-relaxed"
+            class="px-6 pb-5 text-gray-600 leading-relaxed"
           >
             {{ faq.answer }}
           </div>
@@ -46,11 +50,12 @@
       </div>
 
       <!-- CTA at bottom -->
-      <div class="text-center mt-12">
-        <p class="text-gray-600 mb-6">Ready to get started with our PDF API?</p>
+      <div class="text-center mt-16 p-10 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 rounded-3xl">
+        <h3 class="text-2xl font-bold text-white mb-3">Ready to get started?</h3>
+        <p class="text-emerald-100 mb-6">Join our waitlist and be the first to experience it.</p>
         <button 
           @click="$emit('openWaitlist')"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center"
+          class="bg-white hover:bg-gray-50 text-emerald-700 font-semibold py-4 px-8 rounded-xl transition-all duration-200 hover:shadow-lg inline-flex items-center"
         >
           Join the Waitlist
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
