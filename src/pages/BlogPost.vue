@@ -98,13 +98,11 @@ watch(() => route.params.slug, () => {
 </script>
 
 <template>
-  <div class="bg-gradient-to-b from-slate-800 via-slate-700 to-slate-600">
-    <AppHeader />
-  </div>
+  <AppHeader light-mode />
 
   <main v-if="post" class="bg-white">
     <!-- Article Header -->
-    <section class="bg-gradient-to-br from-slate-50 to-gray-100 py-16 px-6">
+    <section class="bg-gradient-to-br from-slate-50 to-gray-100 py-20 pt-40 px-6">
       <div class="max-w-3xl mx-auto">
         <!-- Breadcrumb -->
         <nav class="mb-6">

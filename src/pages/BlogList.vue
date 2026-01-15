@@ -45,13 +45,11 @@ function updateMetaTag(property: string, content: string) {
 </script>
 
 <template>
-  <div class="bg-gradient-to-b from-slate-800 via-slate-700 to-slate-600">
-    <AppHeader />
-  </div>
+  <AppHeader light-mode />
 
   <main class="bg-white">
     <!-- Blog Header -->
-    <section class="bg-gradient-to-br from-slate-50 to-gray-100 py-16 px-6">
+    <section class="bg-gradient-to-br from-slate-50 to-gray-100 py-20 pt-40 px-6">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           Blog

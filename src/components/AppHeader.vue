@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto">
       <div 
         class="flex items-center justify-between backdrop-blur-xl rounded-2xl px-6 py-3 border transition-all duration-300"
-        :class="isScrolled ? 'bg-white/95 border-gray-200 shadow-sm' : 'bg-white/10 border-white/20 shadow-lg'"
+        :class="isLight ? 'bg-white/95 border-gray-200 shadow-sm' : 'bg-white/10 border-white/20 shadow-lg'"
       >
         <!-- Logo -->
         <router-link to="/" class="flex items-center space-x-2">
@@ -15,27 +15,27 @@
           <a 
             href="/#product" 
             class="px-4 py-2 rounded-lg transition-all duration-200"
-            :class="isScrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
+            :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
           >Product</a>
           <a 
             href="/#pricing" 
             class="px-4 py-2 rounded-lg transition-all duration-200"
-            :class="isScrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
+            :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
           >Pricing</a>
           <a 
             href="/#testimonials" 
             class="px-4 py-2 rounded-lg transition-all duration-200"
-            :class="isScrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
+            :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
           >Testimonials</a>
           <a 
             href="/#faq" 
             class="px-4 py-2 rounded-lg transition-all duration-200"
-            :class="isScrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
+            :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
           >FAQ</a>
           <router-link 
             to="/blog" 
             class="px-4 py-2 rounded-lg transition-all duration-200"
-            :class="isScrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
+            :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
           >Blog</router-link>
         </nav>
         
@@ -52,7 +52,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+
+// Define props
+const props = defineProps<{
+  lightMode?: boolean
+}>()
 
 // Define emits
 defineEmits<{
@@ -61,6 +66,9 @@ defineEmits<{
 
 // Scroll state
 const isScrolled = ref(false)
+
+// Computed: use light theme if lightMode prop is true OR if scrolled
+const isLight = computed(() => props.lightMode || isScrolled.value)
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 100
