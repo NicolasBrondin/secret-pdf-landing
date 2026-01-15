@@ -1,6 +1,6 @@
 <template>
   <!-- Footer -->
-  <footer class="bg-slate-900 text-gray-300 py-8 mt-16">
+  <footer class="bg-slate-900 text-gray-300 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center space-y-4">
         <!-- Links -->
