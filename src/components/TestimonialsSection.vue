@@ -1,9 +1,21 @@
 <template>
   <!-- Testimonials Section -->
-  <section id="testimonials" class="bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-6">
-    <div class="max-w-6xl mx-auto">
+  <section id="testimonials" class="bg-gradient-to-b from-slate-50 via-white to-slate-50 py-24 px-6 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/4 right-0 w-72 h-72 bg-violet-100 rounded-full blur-3xl opacity-40"></div>
+      <div class="absolute bottom-1/4 left-0 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-40"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-violet-100 rounded-full px-4 py-2 mb-6">
+          <svg class="w-4 h-4 text-violet-600" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span class="text-violet-700 text-sm font-semibold">Loved by developers</span>
+        </div>
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           Trusted by Developers
         </h2>
@@ -17,10 +29,10 @@
         <div 
           v-for="(testimonial, index) in testimonials" 
           :key="index"
-          class="flex flex-col bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+          class="group flex flex-col bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-violet-200 hover:-translate-y-1"
         >
           <div class="flex items-center mb-4">
-            <div class="flex text-yellow-400">
+            <div class="flex text-amber-400">
               <svg 
                 v-for="i in testimonial.rating" 
                 :key="i" 
@@ -31,11 +43,11 @@
               </svg>
             </div>
           </div>
-          <p class="flex-1 text-gray-600 mb-6 italic">
+          <p class="flex-1 text-gray-600 mb-6 leading-relaxed">
             "{{ testimonial.quote }}"
           </p>
           <div class="flex items-center">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4" :class="testimonial.author.avatarColor">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold mr-4 shadow-md" :class="testimonial.author.avatarColor">
               {{ testimonial.author.initials }}
             </div>
             <div>
@@ -47,13 +59,14 @@
       </div>
 
       <!-- Stats Section -->
-      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
         <div 
           v-for="(stat, index) in stats" 
           :key="index"
+          class="bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100 hover:border-violet-200 hover:shadow-lg transition-all duration-300"
         >
-          <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2" v-html="stat.value"></div>
-          <div class="text-gray-600">{{ stat.label }}</div>
+          <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent mb-2" v-html="stat.value"></div>
+          <div class="text-gray-500 font-medium">{{ stat.label }}</div>
         </div>
       </div>
     </div>
