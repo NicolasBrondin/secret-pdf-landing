@@ -55,7 +55,7 @@ function updateMetaTag(property: string, content: string) {
           Blog
         </h1>
         <p class="text-xl text-gray-600">
-          Insights on PDF security, compliance, and best practices
+          Insights on PDF technologies, apis and best practices
         </p>
       </div>
     </section>
