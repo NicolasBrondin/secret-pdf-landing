@@ -1,6 +1,6 @@
 <template>
   <main class="relative pt-16 pb-24 ">
-    <div class="relative z-10 px-6 py-20 text-center w-full max-w-6xl mx-auto">
+    <div class="relative z-10 px-6 pt-14 sm:pt-20 sm:pb-20 pb-10 text-center w-full max-w-6xl mx-auto">
       <!-- Announcement Badge -->
       <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-400/20 to-indigo-500/20 border border-blue-400/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
         <span class="relative flex h-2 w-2">
@@ -12,12 +12,12 @@
 
       <!-- Main Heading -->
       <h1 class="flex flex-col  font-bold mb-6 leading-tight tracking-tight">
-        <span class="text-5xl md:text-7xl bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">Just. Generate. PDFs.</span>
-        <span class="text-3xl md:text-5xl bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">One api call. Zero hassle.</span>
+        <span class="text-3xl md:text-7xl bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">Just. Generate. PDFs.</span>
+        <span class="text-2xl md:text-5xl bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">One api call. Zero hassle.</span>
       </h1>
       
       <!-- Subtitle -->
-      <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-tight">
+      <p class="text-gl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-tight">
         Generate invoices, paysheets, and any complex documents using one easy API.
       </p>
       
