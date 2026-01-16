@@ -7,7 +7,11 @@
       >
         <!-- Logo -->
         <router-link to="/" class="flex items-center space-x-2">
-          <img src="@/assets/logo.svg" class="h-8" alt="Secret PDF" />
+          <img 
+            :src="isLight ? logoDark : logoLight" 
+            class="h-8 transition-opacity duration-300" 
+            alt="Secret PDF" 
+          />
         </router-link>
         
         <!-- Navigation -->
@@ -53,6 +57,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import logoLight from '@/assets/logo.svg'
+import logoDark from '@/assets/logo-dark.svg'
 
 // Define props
 const props = defineProps<{
