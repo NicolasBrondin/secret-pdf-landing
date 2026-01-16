@@ -54,7 +54,37 @@
         </button>
       </div>
     </div>
-    <img src="@/assets/img/icons/monkey.svg" class="monkey-swing absolute z-10 top-2/3 left-full w-32 -translate-x-2" style="transform-origin: top left;" alt=""/>
+    
+    <!-- Code typing animation - replaces monkey -->
+    <div v-if="isVisible" class="code-typing absolute z-30 -bottom-1/5 left-full -translate-y-1/2 -ml-4 bg-slate-900 rounded-lg shadow-2xl p-4 w-72 hidden lg:block border border-slate-700/50 animate-build">
+      <div class="flex items-center gap-1.5 mb-3">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        <span class="ml-2 text-slate-500 text-xs font-mono">generate.ts</span>
+      </div>
+      <div class="font-mono text-xs leading-relaxed">
+        <div class="code-line" :class="{ 'animate-build': isVisible }" style="--delay: 0s">
+          <span class="text-purple-400">const</span> <span class="text-blue-300">pdf</span> <span class="text-white">=</span> <span class="text-purple-400">await</span>
+        </div>
+        <div class="code-line" :class="{ 'animate-build': isVisible }" style="--delay: 0.3s">
+          <span class="text-yellow-300 ml-3">SecretPDF</span><span class="text-white">.</span><span class="text-green-400">generate</span><span class="text-white">(</span><span class="text-white">{</span>
+        </div>
+        <div class="code-line" :class="{ 'animate-build': isVisible }" style="--delay: 0.6s">
+          <span class="text-blue-300 ml-6">template</span><span class="text-white">:</span> <span class="text-amber-300">"invoice"</span><span class="text-white">,</span>
+        </div>
+        <div class="code-line" :class="{ 'animate-build': isVisible }" style="--delay: 0.9s">
+          <span class="text-blue-300 ml-6">data</span><span class="text-white">:</span> <span class="text-orange-300">invoiceData</span>
+        </div>
+        <div class="code-line" :class="{ 'animate-build': isVisible }" style="--delay: 1.2s">
+          <span class="text-white ml-3">}</span><span class="text-white">);</span>
+        </div>
+        <div class="code-line flex items-center" :class="{ 'animate-build': isVisible }" style="--delay: 1.5s">
+          <span class="text-slate-500">//</span> <span class="text-slate-500 ml-1">✓ PDF ready!</span>
+          <span class="typing-cursor ml-1"></span>
+        </div>
+      </div>
+    </div>
 </div>
 
     <!-- PDF Examples Buttons -->
@@ -253,17 +283,50 @@ const openPdfExample = (type: string) => {
   z-index: -1;
 }
 
-.monkey-swing {
-  animation: swing 2s ease-in-out 5 forwards;
+/* Code typing animation */
+.code-typing {
+  animation: slideIn 0.6s ease-out forwards;
 }
 
-@keyframes swing {
-  0%, 100% {
-    transform: translateX(-0.5rem) rotate(16deg);
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
   }
-  50% {
-    transform: translateX(-0.5rem) rotate(0deg);
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
+}
+
+.code-line {
+  opacity: 0;
+  animation: typeLine 0.4s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes typeLine {
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+  background: #60a5fa;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Build item animation - hidden by default */
