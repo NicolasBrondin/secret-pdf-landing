@@ -40,7 +40,7 @@ useHead(() => {
   if (!post.value) return {}
   
   return {
-    title: `${post.value.title} - Secret PDF Blog`,
+    title: `${post.value.title} - Secret PDF`,
     meta: [
       { name: 'description', content: post.value.description },
       { property: 'og:title', content: post.value.title },

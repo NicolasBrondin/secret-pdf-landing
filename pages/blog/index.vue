@@ -13,7 +13,7 @@ function formatDate(dateString: string): string {
 }
 
 useHead({
-  title: 'Blog - Secret PDF | Security & Compliance Insights',
+  title: 'Blog - Secret PDF',
   meta: [
     { 
       name: 'description', 

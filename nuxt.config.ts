@@ -16,11 +16,14 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Secret PDF',
+      title: 'The developer-friendly HTML to PDF API - Secret PDF',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
+        link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/icon.svg' },
+    ],
     },
   },
 

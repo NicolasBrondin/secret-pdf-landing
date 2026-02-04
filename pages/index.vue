@@ -19,7 +19,7 @@ const openWaitlistPopup = () => {
 }
 
 useHead({
-  title: 'Secret PDF - GDPR & HIPAA Compliant PDF Generation API',
+  title: 'The developer-friendly HTML to PDF API - Secret PDF',
 })
 </script>
 
