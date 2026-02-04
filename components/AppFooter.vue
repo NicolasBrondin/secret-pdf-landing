@@ -19,9 +19,9 @@
             <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
             <span>Status</span>
           </a>
-          <router-link to="/blog" class="hover:text-white transition-colors duration-200">Blog</router-link>
-          <router-link to="/privacy" class="hover:text-white transition-colors duration-200">Privacy</router-link>
-          <router-link to="/legal" class="hover:text-white transition-colors duration-200">Legal</router-link>
+          <NuxtLink to="/blog" class="hover:text-white transition-colors duration-200">Blog</NuxtLink>
+          <NuxtLink to="/privacy" class="hover:text-white transition-colors duration-200">Privacy</NuxtLink>
+          <NuxtLink to="/legal" class="hover:text-white transition-colors duration-200">Legal</NuxtLink>
         </div>
         
         <!-- Copyright -->

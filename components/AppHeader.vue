@@ -6,13 +6,13 @@
         :class="isLight ? 'bg-white/95 border-gray-200 shadow-sm' : 'bg-white/10 border-white/20 shadow-lg'"
       >
         <!-- Logo -->
-        <router-link to="/" class="flex items-center space-x-2">
+        <NuxtLink to="/" class="flex items-center space-x-2">
           <img 
             :src="isLight ? logoDark : logoLight" 
             class="h-8 transition-opacity duration-300" 
             alt="Secret PDF" 
           />
-        </router-link>
+        </NuxtLink>
         
         <!-- Navigation -->
         <nav class="hidden md:flex items-center space-x-1">
@@ -36,11 +36,11 @@
             class="px-4 py-2 rounded-lg transition-all duration-200"
             :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
           >FAQ</a>
-          <router-link 
+          <NuxtLink 
             to="/blog" 
             class="px-4 py-2 rounded-lg transition-all duration-200"
             :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
-          >Blog</router-link>
+          >Blog</NuxtLink>
         </nav>
         
         <!-- Join Waitlist Button -->

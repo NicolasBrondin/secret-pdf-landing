@@ -1,12 +1,18 @@
+<script setup lang="ts">
+useHead({
+  title: 'Legal Mentions - Secret PDF',
+})
+</script>
+
 <template>
   <div class="min-h-screen bg-white">
     <!-- Header Navigation -->
     <header class="bg-slate-900 text-white py-4">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
-          <router-link to="/" class="text-xl font-bold hover:text-blue-400 transition-colors">
+          <NuxtLink to="/" class="text-xl font-bold hover:text-blue-400 transition-colors">
             ← Back to Secret
-          </router-link>
+          </NuxtLink>
         </div>
       </div>
     </header>
@@ -92,10 +98,6 @@
     <AppFooter />
   </div>
 </template>
-
-<script setup lang="ts">
-import AppFooter from '../components/AppFooter.vue'
-</script>
 
 <style scoped>
 .prose h1,
