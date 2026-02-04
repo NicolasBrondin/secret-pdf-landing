@@ -56,7 +56,7 @@
     </div>
     
     <!-- Code typing animation - replaces monkey -->
-    <div v-if="isVisible" class="code-typing absolute z-30 -bottom-1/5 left-full -translate-y-1/2 -ml-4 bg-slate-900 rounded-lg shadow-2xl p-4 w-72 hidden lg:block border border-slate-700/50 animate-build">
+    <div v-if="isVisible" class="code-typing absolute z-30 -bottom-16 left-full -translate-y-1/2 -ml-8 bg-slate-900 rounded-lg shadow-2xl p-4 w-72 hidden lg:block border border-slate-700/50 animate-build">
       <div class="flex items-center gap-1.5 mb-3">
         <div class="w-3 h-3 rounded-full bg-red-500"></div>
         <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -160,7 +160,7 @@
     </div>
 
     <!-- Code Template Notes -->
-    <div class="absolute z-30 -top-32 left-1/8 backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl p-4 shadow-xl max-w-xs hidden md:block">
+    <div class="absolute z-30 -top-32 left-1/4 backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl p-4 shadow-xl max-w-xs hidden md:block">
       <div class="flex items-center space-x-3 text-gray-700">
         <div class="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center">
           <img src="@/assets/img/icons/code.svg" class="h-5" alt=""/>
@@ -169,7 +169,7 @@
       </div>
     </div>
 
-    <div class="absolute z-30 top-8 right-1/8 backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl p-4 shadow-xl max-w-xs hidden md:block">
+    <div class="absolute z-30 top-8 right-1/4 backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl p-4 shadow-xl max-w-xs hidden md:block">
       <div class="flex items-center space-x-3 text-gray-700">
         <div class="w-10 h-10 bg-gradient-to-br from-cyan-100 to-sky-100 rounded-xl flex items-center justify-center">
           <img src="@/assets/img/icons/tailwindcss.svg" class="h-4" alt=""/>
@@ -178,7 +178,7 @@
       </div>
     </div>
 
-    <div class="absolute z-30 top-36 left-1/5 backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl p-4 shadow-xl max-w-xs hidden md:block">
+    <div class="absolute z-30 top-36 left-1/4 backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl p-4 shadow-xl max-w-xs hidden md:block">
       <div class="flex items-center space-x-3 text-gray-700">
         <div class="w-10 h-10 bg-gradient-to-br from-emerald-100 to-green-100 rounded-xl flex items-center justify-center">
           <img src="@/assets/img/icons/unlock.svg" class="h-5" alt=""/>

@@ -1,5 +1,5 @@
 <template>
-  <main class="relative pt-16 pb-24 ">
+  <main class="relative pt-16 pb-60">
     <div class="relative z-10 px-6 pt-14 sm:pt-20 sm:pb-20 pb-10 text-center w-full max-w-6xl mx-auto">
       <!-- Announcement Badge -->
       <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-400/20 to-indigo-500/20 border border-blue-400/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
