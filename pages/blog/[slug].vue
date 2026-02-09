@@ -117,17 +117,17 @@ watchEffect(() => {
       <section class="bg-gradient-to-br from-slate-800 to-slate-900 py-16 px-6">
         <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-            Ready to secure your documents?
+            Ready to generate PDFs?
           </h2>
           <p class="text-slate-300 mb-6">
-            Join our waitlist and be the first to experience enterprise-grade PDF security.
+            Sign up and start creating dynamic PDFs with one API call.
           </p>
-          <NuxtLink 
-            to="/#pricing"
+          <a 
+            href="https://app.secretpdf.io"
             class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
           >
             Get Started
-          </NuxtLink>
+        </a>
         </div>
       </section>
 

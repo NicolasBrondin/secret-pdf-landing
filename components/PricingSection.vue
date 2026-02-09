@@ -68,12 +68,12 @@
             </ul>
           </div>
 
-          <button 
-            @click="$emit('openWaitlist')"
-            class="w-full bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3 px-6 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-all mt-6"
+          <a 
+            href="https://app.secretpdf.io"
+            class="w-full block text-center bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3 px-6 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-all mt-6"
           >
             Start for Free
-          </button>
+          </a>
         </div>
 
         <!-- Pro Plan - Highlighted -->
@@ -147,12 +147,12 @@
             </ul>
           </div>
 
-          <button 
-            @click="$emit('openWaitlist')"
-            class="relative w-full bg-white hover:bg-gray-50 text-blue-700 font-semibold py-3 px-6 rounded-xl transition-all mt-6"
+          <a 
+            href="https://app.secretpdf.io"
+            class="relative block text-center w-full bg-white hover:bg-gray-50 text-blue-700 font-semibold py-3 px-6 rounded-xl transition-all mt-6"
           >
             Get Started with Pro
-          </button>
+          </a>
         </div>
 
         <!-- Enterprise Plan -->

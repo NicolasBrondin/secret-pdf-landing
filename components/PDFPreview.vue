@@ -45,13 +45,13 @@
 
       <!-- CTA Button -->
       <div ref="tryMeButton" class="relative mt-5 text-center build-item" style="--delay: 1.1s">
-        <button 
-          @click="$emit('openWaitlist')"
+        <a 
+          href="https://app.secretpdf.io"
           class="relative bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white px-8 py-3 rounded-lg font-semibold text-base transition-all shadow-lg shadow-blue-400/30 hover:shadow-blue-400/50 hover:scale-105 overflow-hidden group/btn"
         >
           <span class="relative z-10">Try me !</span>
           <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
-        </button>
+      </a>
       </div>
     </div>
     
