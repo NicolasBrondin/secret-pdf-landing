@@ -11,7 +11,11 @@ useHead({
   <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
     <AppHeader />
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div class="grid lg:grid-cols-[280px,1fr] gap-8">
+        <DocsSidenav />
+        
+        <div>
       <!-- Breadcrumb -->
       <div class="mb-8">
         <NuxtLink to="/docs" class="text-blue-400 hover:text-blue-300">Documentation</NuxtLink>
@@ -305,6 +309,8 @@ console.log('Invoices:', invoices.invoices)`"
               <strong class="text-white">Use OAuth for User Actions:</strong> Use OAuth tokens for user-specific operations in web apps
             </p>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>

@@ -57,6 +57,10 @@ const apiCategories = [
     <AppHeader />
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-[280px,1fr] gap-8">
+        <DocsSidenav />
+        
+        <div class="py-12">
       <!-- Header -->
       <div class="text-center mb-16">
         <h1 class="text-5xl font-bold text-white mb-6">
@@ -144,6 +148,8 @@ const apiCategories = [
             <div class="mt-3"><span class="text-slate-500"># Using Bearer Token</span></div>
             <div><span class="text-blue-400">Authorization</span>: <span class="text-green-400">Bearer your-token</span></div>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>
