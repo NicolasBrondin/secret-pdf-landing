@@ -26,6 +26,11 @@
             class="px-4 py-2 rounded-lg transition-all duration-200"
             :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
           >Pricing</a>
+          <NuxtLink 
+            to="/docs" 
+            class="px-4 py-2 rounded-lg transition-all duration-200"
+            :class="isLight ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-200 hover:text-white hover:bg-white/10'"
+          >API Docs</NuxtLink>
           <a 
             href="/#testimonials" 
             class="px-4 py-2 rounded-lg transition-all duration-200"

@@ -1,0 +1,309 @@
+<script setup lang="ts">
+useHead({
+  title: 'Storage API - Secret PDF Documentation',
+  meta: [
+    { name: 'description', content: 'Configure external storage for generated PDFs' }
+  ]
+})
+</script>
+
+<template>
+  <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
+    <AppHeader />
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <!-- Breadcrumb -->
+      <div class="mb-8">
+        <NuxtLink to="/docs" class="text-blue-400 hover:text-blue-300">Documentation</NuxtLink>
+        <span class="text-slate-500 mx-2">/</span>
+        <span class="text-white">Storage</span>
+      </div>
+
+      <!-- Header -->
+      <div class="mb-12">
+        <div class="text-5xl mb-4">💾</div>
+        <h1 class="text-4xl font-bold text-white mb-4">Storage API</h1>
+        <p class="text-xl text-slate-300">
+          Configure external storage providers to automatically save generated PDFs
+        </p>
+      </div>
+
+      <!-- Supported Providers -->
+      <div class="mb-12 grid md:grid-cols-3 gap-6">
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">☁️</div>
+          <h3 class="text-lg font-bold text-white mb-2">Amazon S3</h3>
+          <p class="text-slate-400 text-sm">Store PDFs in S3 buckets</p>
+        </div>
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">🔷</div>
+          <h3 class="text-lg font-bold text-white mb-2">Azure Blob</h3>
+          <p class="text-slate-400 text-sm">Use Azure Blob Storage</p>
+        </div>
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">🔥</div>
+          <h3 class="text-lg font-bold text-white mb-2">Google Cloud</h3>
+          <p class="text-slate-400 text-sm">Save to GCS buckets</p>
+        </div>
+      </div>
+
+      <!-- List Storage Configs -->
+      <ApiEndpoint
+        method="GET"
+        path="/storage/configs"
+        title="List Storage Configurations"
+        description="Get all storage configurations for authenticated user"
+        :parameters="[
+          { name: 'Authorization', type: 'string', required: true, description: 'Bearer token' }
+        ]"
+        :responses="[
+          {
+            status: 200,
+            description: 'Storage configs retrieved',
+            schema: `{
+  &quot;success&quot;: true,
+  &quot;configs&quot;: [
+    {
+      &quot;id&quot;: &quot;storage-123&quot;,
+      &quot;name&quot;: &quot;Production S3&quot;,
+      &quot;provider&quot;: &quot;s3&quot;,
+      &quot;bucket&quot;: &quot;my-pdfs&quot;,
+      &quot;region&quot;: &quot;us-east-1&quot;,
+      &quot;isDefault&quot;: true,
+      &quot;createdAt&quot;: &quot;2026-01-15T10:00:00Z&quot;
+    }
+  ]
+}`
+          }
+        ]"
+        :code-example="`import { StorageApi, Configuration } from '@secret-pdf/sdk'
+
+const config = new Configuration({
+  accessToken: 'your-bearer-token'
+})
+
+const api = new StorageApi(config)
+const configs = await api.storageConfigsGet()
+
+console.log('Storage configs:', configs.configs)`"
+      />
+
+      <!-- Create Storage Config -->
+      <ApiEndpoint
+        method="POST"
+        path="/storage/config"
+        title="Create Storage Configuration"
+        description="Configure a new storage provider"
+        :request-body="`{
+  &quot;storageConfig&quot;: {
+    &quot;provider&quot;: &quot;s3&quot;,              // s3, azure, gcs
+    &quot;name&quot;: &quot;Production S3&quot;,
+    &quot;bucket&quot;: &quot;my-pdfs&quot;,
+    &quot;region&quot;: &quot;us-east-1&quot;,
+    &quot;accessKeyId&quot;: &quot;AKIA...&quot;,
+    &quot;secretAccessKey&quot;: &quot;secret...&quot;,
+    &quot;isDefault&quot;: true
+  }
+}`"
+        :responses="[
+          {
+            status: 200,
+            description: 'Storage config created',
+            schema: `{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Storage configuration created&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;storage-456&quot;,
+    &quot;name&quot;: &quot;Production S3&quot;,
+    &quot;provider&quot;: &quot;s3&quot;
+  }
+}`
+          },
+          {
+            status: 400,
+            description: 'Invalid configuration'
+          }
+        ]"
+        :code-example="`const response = await api.storageConfigPost({
+  storageConfigPostRequest: {
+    storageConfig: {
+      provider: 's3',
+      name: 'Production S3',
+      bucket: 'my-pdfs',
+      region: 'us-east-1',
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      isDefault: true
+    }
+  }
+})
+
+console.log('Storage configured:', response.data.id)
+
+// Now PDFs will automatically be saved to S3
+const pdf = await documentsApi.generatePost({
+  generatePostRequest: {
+    templateId: 'template-123',
+    data: { name: 'John' },
+    storage: {
+      provider: 's3',
+      path: 'invoices/2026/02/invoice-001.pdf'
+    }
+  }
+})`"
+      />
+
+      <!-- Get Storage Config -->
+      <ApiEndpoint
+        method="GET"
+        path="/storage/config/{storageKey}"
+        title="Get Storage Configuration"
+        description="Get details of a specific storage configuration"
+        :parameters="[
+          { name: 'storageKey', type: 'string', required: true, description: 'Storage configuration ID' }
+        ]"
+        :responses="[
+          {
+            status: 200,
+            description: 'Storage config details',
+            schema: `{
+  &quot;success&quot;: true,
+  &quot;config&quot;: {
+    &quot;id&quot;: &quot;storage-123&quot;,
+    &quot;name&quot;: &quot;Production S3&quot;,
+    &quot;provider&quot;: &quot;s3&quot;,
+    &quot;bucket&quot;: &quot;my-pdfs&quot;,
+    &quot;region&quot;: &quot;us-east-1&quot;,
+    &quot;isDefault&quot;: true
+  }
+}`
+          }
+        ]"
+      />
+
+      <!-- Update Storage Config -->
+      <ApiEndpoint
+        method="PUT"
+        path="/storage/config/{storageKey}"
+        title="Update Storage Configuration"
+        description="Update an existing storage configuration"
+        :parameters="[
+          { name: 'storageKey', type: 'string', required: true, description: 'Storage configuration ID' }
+        ]"
+        :request-body="`{
+  &quot;name&quot;: &quot;Updated S3 Config&quot;,
+  &quot;isDefault&quot;: false
+}`"
+        :responses="[
+          {
+            status: 200,
+            description: 'Storage config updated'
+          }
+        ]"
+        :code-example="`await api.storageConfigStorageKeyPut({
+  storageKey: 'storage-123',
+  storageConfigStorageKeyPutRequest: {
+    name: 'Updated S3 Config',
+    isDefault: false
+  }
+})`"
+      />
+
+      <!-- Provider Examples -->
+      <div class="mt-12 space-y-6">
+        <h2 class="text-2xl font-bold text-white mb-6">📝 Provider Configuration Examples</h2>
+
+        <!-- S3 -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
+          <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span>☁️</span> Amazon S3
+          </h3>
+          <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm overflow-x-auto">
+            <pre class="text-slate-300">{
+  <span class="text-blue-400">&quot;provider&quot;</span>: <span class="text-green-400">&quot;s3&quot;</span>,
+  <span class="text-blue-400">&quot;name&quot;</span>: <span class="text-green-400">&quot;My S3 Bucket&quot;</span>,
+  <span class="text-blue-400">&quot;bucket&quot;</span>: <span class="text-green-400">&quot;my-pdf-bucket&quot;</span>,
+  <span class="text-blue-400">&quot;region&quot;</span>: <span class="text-green-400">&quot;us-east-1&quot;</span>,
+  <span class="text-blue-400">&quot;accessKeyId&quot;</span>: <span class="text-green-400">&quot;AKIA...&quot;</span>,
+  <span class="text-blue-400">&quot;secretAccessKey&quot;</span>: <span class="text-green-400">&quot;secret...&quot;</span>
+}</pre>
+          </div>
+        </div>
+
+        <!-- Azure -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
+          <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span>🔷</span> Azure Blob Storage
+          </h3>
+          <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm overflow-x-auto">
+            <pre class="text-slate-300">{
+  <span class="text-blue-400">&quot;provider&quot;</span>: <span class="text-green-400">&quot;azure&quot;</span>,
+  <span class="text-blue-400">&quot;name&quot;</span>: <span class="text-green-400">&quot;Azure Storage&quot;</span>,
+  <span class="text-blue-400">&quot;containerName&quot;</span>: <span class="text-green-400">&quot;pdfs&quot;</span>,
+  <span class="text-blue-400">&quot;accountName&quot;</span>: <span class="text-green-400">&quot;mystorageaccount&quot;</span>,
+  <span class="text-blue-400">&quot;accountKey&quot;</span>: <span class="text-green-400">&quot;key...&quot;</span>
+}</pre>
+          </div>
+        </div>
+
+        <!-- GCS -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
+          <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span>🔥</span> Google Cloud Storage
+          </h3>
+          <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm overflow-x-auto">
+            <pre class="text-slate-300">{
+  <span class="text-blue-400">&quot;provider&quot;</span>: <span class="text-green-400">&quot;gcs&quot;</span>,
+  <span class="text-blue-400">&quot;name&quot;</span>: <span class="text-green-400">&quot;GCS Bucket&quot;</span>,
+  <span class="text-blue-400">&quot;bucket&quot;</span>: <span class="text-green-400">&quot;my-gcs-bucket&quot;</span>,
+  <span class="text-blue-400">&quot;projectId&quot;</span>: <span class="text-green-400">&quot;my-project&quot;</span>,
+  <span class="text-blue-400">&quot;credentials&quot;</span>: {
+    <span class="text-blue-400">&quot;client_email&quot;</span>: <span class="text-green-400">&quot;...&quot;</span>,
+    <span class="text-blue-400">&quot;private_key&quot;</span>: <span class="text-green-400">&quot;...&quot;</span>
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Best Practices -->
+      <div class="mt-12 bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
+        <h2 class="text-2xl font-bold text-white mb-4">💡 Best Practices</h2>
+        <div class="space-y-4 text-slate-300">
+          <div class="flex gap-3">
+            <span class="text-blue-400 text-xl">•</span>
+            <p>
+              <strong class="text-white">Use IAM Roles:</strong> For S3, prefer IAM roles over access keys when running on AWS infrastructure
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-blue-400 text-xl">•</span>
+            <p>
+              <strong class="text-white">Set Lifecycle Policies:</strong> Configure automatic deletion or archival of old PDFs to manage storage costs
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-blue-400 text-xl">•</span>
+            <p>
+              <strong class="text-white">Organize with Paths:</strong> Use meaningful folder structures in your storage path, e.g., <code class="text-blue-400 bg-slate-950/50 px-2 py-1 rounded">invoices/2026/02/invoice-001.pdf</code>
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-blue-400 text-xl">•</span>
+            <p>
+              <strong class="text-white">Set Default Config:</strong> Mark your primary storage as default to automatically use it for all PDF generations
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-blue-400 text-xl">•</span>
+            <p>
+              <strong class="text-white">Secure Credentials:</strong> Never commit storage credentials to version control. Use environment variables or secret managers
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <AppFooter />
+  </div>
+</template>
