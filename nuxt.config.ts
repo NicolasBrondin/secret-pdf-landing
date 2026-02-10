@@ -26,7 +26,7 @@ export default defineNuxtConfig({
       ],
       script: [
           // Load tracker from *your* domain (proxied by Nitro route below)
-          { src: '/js/script.js', defer: true, 'data-domain': 'code-garage.com', 'data-api': '/api/event' },
+          { src: '/js/script.js', defer: true, 'data-domain': 'www.secretpdf.io', 'data-api': '/api/event' },
 
           // Initialize plausible with the custom endpoint (per Plausible proxy docs)
           {
