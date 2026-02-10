@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const baseURL = process.env.BASE_URL || 'http://127.0.0.1:3000';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -13,7 +14,6 @@ export default defineNuxtConfig({
     exposeConfig: false,
     viewer: true,
   },
-
   app: {
     head: {
       title: 'The developer-friendly HTML to PDF API - Secret PDF',
@@ -61,5 +61,10 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/sitemap.xml']
     }
+  },
+
+  routeRules: {
+    '/js/script.js': { swr: 3600 },
+    '/api/event': { cors: true }
   }
 })

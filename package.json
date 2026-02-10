@@ -8,7 +8,7 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare && nuxt build"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.2",
