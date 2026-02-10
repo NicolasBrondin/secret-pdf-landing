@@ -21,12 +21,36 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
-        link: [
+      link: [
         { rel: 'icon', type: 'image/x-icon', href: '/icon.svg' },
-    ],
+      ],
+      script: [
+          // Load tracker from *your* domain (proxied by Nitro route below)
+          { src: '/js/script.js', defer: true, 'data-domain': 'code-garage.com', 'data-api': '/api/event' },
+
+          // Initialize plausible with the custom endpoint (per Plausible proxy docs)
+          {
+            children:
+              `window.plausible = window.plausible || function () {
+    (plausible.q = plausible.q || []).push(arguments)
+  },
+  plausible.init = plausible.init || function (o) {
+    plausible.o = o || {}
+  };
+
+  plausible.init({
+    endpoint: "/api/event",
+    outboundLinks: true,
+    captureOnLocalhost: false,
+    logging: true
+  });`,
+          },
+        ],
     },
   },
-
+    plugins: [
+      '~/plugins/plausible.client.ts',
+    ],
   router: {
     options: {
       scrollBehaviorType: 'smooth'
