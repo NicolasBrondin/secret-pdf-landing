@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-const baseURL = process.env.BASE_URL || 'http://127.0.0.1:3000';
+const baseURL = 'https://www.secretpdf.io';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -20,6 +20,23 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'Convert HTML to PDF with our developer-friendly API. Fast, reliable, and easy to integrate. Start generating PDFs in minutes.' },
+        
+        // Open Graph
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'Secret PDF' },
+        { property: 'og:title', content: 'The developer-friendly HTML to PDF API - Secret PDF' },
+        { property: 'og:description', content: 'Convert HTML to PDF with our developer-friendly API. Fast, reliable, and easy to integrate. Start generating PDFs in minutes.' },
+        { property: 'og:url', content: baseURL },
+        { property: 'og:image', content: `${baseURL}/og-image.jpg` },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        
+        // Twitter
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'The developer-friendly HTML to PDF API - Secret PDF' },
+        { name: 'twitter:description', content: 'Convert HTML to PDF with our developer-friendly API. Fast, reliable, and easy to integrate. Start generating PDFs in minutes.' },
+        { name: 'twitter:image', content: `${baseURL}/og-image.jpg` },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/icon.svg' },
