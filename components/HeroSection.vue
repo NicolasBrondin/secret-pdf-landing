@@ -7,7 +7,7 @@
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
         </span>
-        <span class="text-sm text-blue-200">Now in public beta</span>
+        <span class="text-sm text-blue-200">Now live</span>
       </div>
 
       <!-- Main Heading -->
