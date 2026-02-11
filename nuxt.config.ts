@@ -25,32 +25,16 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/icon.svg' },
       ],
       script: [
-          // Load tracker from *your* domain (proxied by Nitro route below)
-          { src: '/js/script.js', defer: true, 'data-domain': 'secretpdf.io', 'data-api': '/api/event' },
+        { src: 'https://plausible.io/js/pa-lUPIywEyKlhMbb153OOrC.js', async: true },
 
-          // Initialize plausible with the custom endpoint (per Plausible proxy docs)
           {
             children:
-              `window.plausible = window.plausible || function () {
-    (plausible.q = plausible.q || []).push(arguments)
-  },
-  plausible.init = plausible.init || function (o) {
-    plausible.o = o || {}
-  };
-
-  plausible.init({
-    endpoint: "/api/event",
-    outboundLinks: true,
-    captureOnLocalhost: false,
-    logging: true
-  });`,
+              `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()`,
           },
         ],
     },
   },
-    plugins: [
-      '~/plugins/plausible.client.ts',
-    ],
   router: {
     options: {
       scrollBehaviorType: 'smooth'
@@ -61,10 +45,5 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/sitemap.xml']
     }
-  },
-
-  routeRules: {
-    '/js/script.js': { swr: 3600 },
-    '/api/event': { cors: true }
   }
 })
