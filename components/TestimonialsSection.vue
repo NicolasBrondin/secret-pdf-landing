@@ -153,7 +153,7 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Steve H.",
       title: "CTO",
-      company: "The49",
+      company: "Nicolas Brondin-Bernard",
       initials: "SH",
       avatarColor: "bg-blue-400"
     },

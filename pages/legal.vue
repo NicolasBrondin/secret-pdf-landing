@@ -26,7 +26,7 @@ useHead({
           <section>
             <h2 class="text-2xl font-semibold text-gray-900 mb-4">Company Information</h2>
             <div class="bg-gray-50 p-6 rounded-lg">
-              <p><strong>Company Name:</strong> The49 Ltd</p>
+              <p><strong>Company Name:</strong> Nicolas Brondin-Bernard</p>
               <p><strong>Service:</strong> Secret - PDF Generation Service</p>
               <p><strong>Website:</strong> <a href="https://www.secretpdf.io" class="text-blue-500 hover:text-blue-800">https://www.secretpdf.io</a></p>
             </div>
@@ -45,7 +45,7 @@ useHead({
             <h2 class="text-2xl font-semibold text-gray-900 mb-4">Intellectual Property</h2>
             <p>
               All content, trademarks, logos, and intellectual property displayed on this website are 
-              the exclusive property of The49 Ltd or their respective owners. Any reproduction, 
+              the exclusive property of Nicolas Brondin-Bernard or their respective owners. Any reproduction, 
               distribution, or unauthorized use is strictly prohibited without prior written consent.
             </p>
           </section>
@@ -61,7 +61,7 @@ useHead({
           <section>
             <h2 class="text-2xl font-semibold text-gray-900 mb-4">Limitation of Liability</h2>
             <p>
-              The49 Ltd provides this service "as is" without any express or implied warranties. 
+              Nicolas Brondin-Bernard provides this service "as is" without any express or implied warranties. 
               We shall not be liable for any direct, indirect, incidental, or consequential damages 
               arising from the use of our service.
             </p>
@@ -71,7 +71,7 @@ useHead({
             <h2 class="text-2xl font-semibold text-gray-900 mb-4">Applicable Law</h2>
             <p>
               These legal mentions and the use of our service are governed by applicable laws. 
-              Any disputes shall be resolved in accordance with the jurisdiction where The49 Ltd is established.
+              Any disputes shall be resolved in accordance with the jurisdiction where Nicolas Brondin-Bernard is established.
             </p>
           </section>
 

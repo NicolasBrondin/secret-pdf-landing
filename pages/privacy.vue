@@ -178,11 +178,11 @@ useHead({
             <h2 class="text-2xl font-semibold text-gray-900 mb-4">11. Contact Information</h2>
             <div class="bg-gray-50 p-6 rounded-lg">
               <p class="mb-2">
-                <strong>Data Controller:</strong> The49 Ltd
+                <strong>Data Controller:</strong> Nicolas Brondin-Bernard
               </p>
               <p class="mb-2">
                 <strong>Contact:</strong> For privacy-related questions, please contact us at 
-                <a href="mailto:intrigued@the49.com" class="text-blue-500 hover:text-blue-800">intrigued@the49.com</a>
+                <a href="mailto:nicolas@brondin.com" class="text-blue-500 hover:text-blue-800">nicolas@brondin.com</a>
               </p>
               <p>
                 <strong>Effective Date:</strong> November 2025
