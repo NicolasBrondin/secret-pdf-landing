@@ -24,10 +24,14 @@ export const posts: BlogPost[] = [
 
 Generating a PDF is no longer a technical detail buried in your codebase. In 2026, it is a decision that directly affects **performance, compliance, operational costs, and long-term reliability**. Most teams discover this only after PDFs start breaking at scale.
 
+To understand why these choices matter, it helps to know [how PDF documents are actually structured](/blog/anatomy-of-a-pdf-document).
+
 The real question is not how to generate a PDF, but **where the complexity should live**. Today, there are three realistic approaches: generating PDFs in the browser, on your own servers, or through a dedicated PDF generation API. Each one pushes complexity to a different place.
 
 > **PDF generation is never free.**  
 > You either pay in infrastructure, in reliability, or in dependencies.
+
+<img src="/assets/blog/icons/019-computer.svg" alt="Browser" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## Front-End PDF Generation: Lightweight but Unreliable
 
@@ -45,6 +49,8 @@ But the moment PDFs become contractual, financial, or automated, this model star
 
 > **If the PDF must always look the same, the browser is the wrong place to generate it.**
 
+<img src="/assets/blog/icons/037-computer.svg" alt="Server" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## Back-End PDF Generation: Powerful, Expensive, Fragile
 
 Server-side PDF generation moves the rendering process to your own infrastructure. HTML is rendered using a headless browser or a native PDF engine, and the resulting document is delivered to users or stored.
@@ -58,15 +64,19 @@ In practice, back-end PDF generation quickly becomes an infrastructure problem. 
 
 Back-end generation is viable, but only if you are willing to maintain it like any other critical service.
 
+<img src="/assets/blog/icons/042-networking.svg" alt="API" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## SaaS PDF Generation APIs: Making PDFs Boring Again
 
 A PDF generation API takes a different path. Instead of running rendering engines yourself, you delegate the entire process to a specialized service. Your application sends HTML or structured data and receives a finished PDF.
 
 This shifts PDF generation from infrastructure to integration. Scaling, rendering consistency, retries, and performance tuning are handled externally, allowing teams to focus on their product instead of Chromium crashes and memory leaks.
 
-The trade-off is strategic rather than technical. You introduce a dependency and a per-document cost, which makes **trust, compliance, and data handling guarantees essential**. A good API does not just render PDFs — it clearly defines what happens to your data.
+The trade-off is strategic rather than technical. You introduce a dependency and a per-document cost, which makes **trust, compliance, and data handling guarantees essential**. A good API does not just render PDFs — it clearly defines what happens to your data. Learn more about [GDPR-compliant PDF generation](/blog/gdpr-compliant-pdf-generation).
 
 > **In 2026, reliability beats cleverness.**
+
+<img src="/assets/blog/icons/010-summit.svg" alt="Decision" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## The Real Choice in 2026
 
@@ -98,6 +108,8 @@ And invisibility is usually the result of good engineering decisions made early.
   readTime: '4 min read',
   tags: ['Tech', 'Explanation', 'File'],
   content: `
+<img src="/assets/blog/icons/036-document.svg" alt="Document" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## Understanding What a PDF Really Is
 
 PDF files feel deceptively simple. You open them, scroll through pages, maybe print them, and rarely question what is happening under the hood. Yet the reason PDFs are so reliable, portable, and frustrating to modify lies entirely in how they are built.
@@ -128,6 +140,8 @@ This snippet literally means:
 
 > **PDFs are deterministic by design.**  
 > What you see is exactly what was described.
+
+<img src="/assets/blog/icons/023-layers.svg" alt="Structure" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## The High-Level Structure of a PDF
 
@@ -175,6 +189,8 @@ endobj
 Objects reference each other. A page references its content stream, fonts, and resources. This creates a graph rather than a hierarchy.
 
 The key takeaway is this: **a PDF page does not “contain” text in a semantic sense**. It references instructions that describe how text should be drawn.
+
+<img src="/assets/blog/icons/006-code.svg" alt="Code" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## Content Streams: Where Pages Are Drawn
 
@@ -231,8 +247,8 @@ When you generate a PDF, you are freezing a visual representation, not a documen
 This internal structure is why PDFs work so well for invoices, contracts, reports, and legal documents — and why generation quality matters so much.
 
 It is also the foundation for everything that follows:
-- AI and LLM document processing
-- GDPR-compliant PDF generation
+- [AI and LLM document processing](/blog/why-pdf-best-format-for-llms-and-ai)
+- [GDPR-compliant PDF generation](/blog/gdpr-compliant-pdf-generation)
 - Reliable HTML-to-PDF pipelines
 
 Once you understand how a PDF is built, the rest of the ecosystem starts to make sense.
@@ -247,6 +263,8 @@ Once you understand how a PDF is built, the rest of the ecosystem starts to make
   readTime: '4 min read',
   tags: ['Business', 'AI', 'LLM', ],
   content: `
+<img src="/assets/blog/icons/040-artificial intelligence.svg" alt="AI" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## A Format Older Than Most AI Models
 
 PDF is often seen as a legacy format. It was designed in the early 1990s, long before large language models, vector databases, and document AI pipelines existed. Yet despite its age, PDF has quietly become **one of the most common inputs for modern AI systems**.
@@ -266,6 +284,8 @@ This visual determinism matters. It is why PDFs became the standard for invoices
 
 AI systems inherit this trust indirectly. When a PDF is processed, there is an implicit assumption that the document represents a stable snapshot of information.
 
+<img src="/assets/blog/icons/025-brain.svg" alt="Machine Learning" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## Why Machines Can Work With PDFs
 
 At first glance, PDFs seem hostile to machines. They lack semantic structure, mix text with drawing instructions, and often require OCR. Yet this apparent weakness hides an important strength.
@@ -279,7 +299,7 @@ A PDF also defines clear boundaries. Pages, coordinates, and visual grouping pro
 
 ## Structure Without Semantics
 
-As explained in the anatomy of a PDF, text inside a PDF is often just positioned glyphs. There is no concept of a heading, a paragraph, or a table — at least not formally.
+As explained in [the anatomy of a PDF](/blog/anatomy-of-a-pdf-document), text inside a PDF is often just positioned glyphs. There is no concept of a heading, a paragraph, or a table — at least not formally.
 
 Paradoxically, this is why PDFs work well with AI. Models trained on noisy, imperfect data are good at reconstructing meaning from weak signals. Layout, spacing, repetition, and visual alignment become clues.
 
@@ -287,6 +307,8 @@ A table is not defined as a table, but its grid-like structure gives it away. A 
 
 > **PDFs describe what something looks like, not what it means.**  
 > AI is increasingly good at filling that gap.
+
+<img src="/assets/blog/icons/020-data.svg" alt="Data" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## PDFs as Ground Truth
 
@@ -317,7 +339,7 @@ In the context of AI, this is often a good deal.
 
 ## Why PDF Generation Quality Matters More Than Ever
 
-As PDFs become primary inputs for AI systems, **how they are generated** starts to matter far beyond visual appearance.
+As PDFs become primary inputs for AI systems, **how they are generated** starts to matter far beyond visual appearance. With [hundreds of millions of PDFs generated daily](/blog/how-many-pdfs-are-generated-every-day), this is not a minor concern.
 
 Poorly generated PDFs lead to:
 - broken text extraction
@@ -356,9 +378,13 @@ PDF is one of the most used file formats in the world — yet very few people ev
 
 We scroll through them, download them, sign them, archive them. But the actual volume remains largely invisible because PDF generation is decentralized. There is no central authority counting documents.
 
+To understand why PDFs became so ubiquitous, check out [the history of the PDF format](/blog/history-of-the-pdf-format).
+
 So instead of looking for an official number, let’s do something more interesting: **let’s estimate it logically.**
 
 > When there is no global counter, you reverse-engineer reality.
+
+<img src="/assets/blog/icons/003-contract.svg" alt="Invoice" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## Step 1: Start With Invoices
 
@@ -370,6 +396,8 @@ There are roughly 330+ million businesses worldwide, ranging from freelancers to
 - Most of them exported as PDFs  
 
 > And this estimate is conservative. Large e-commerce platforms alone generate millions of invoice PDFs daily.
+
+<img src="/assets/blog/icons/020-dollar.svg" alt="Payroll" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## Step 2: Add Payslips
 
@@ -409,6 +437,8 @@ Thousands of platforms generate PDFs programmatically every minute.
 If just 50,000 SaaS products generate an average of 5,000 PDFs per day each (a conservative mix of small and large platforms), that adds another: **250 million PDFs per day**
 
 > And many large platforms exceed that number alone.
+
+<img src="/assets/blog/icons/006-globe.svg" alt="Global" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## A Conservative Global Estimate
 
@@ -461,7 +491,7 @@ PDFs do not trend on social media. They do not get headlines. Yet they underpin 
 
 When you zoom out, PDF is not an old format. It is one of the most actively generated digital artifacts in existence.
 
-If anything, the real surprise is not that AI systems process so many PDFs — it is that we rarely stop to consider how central PDFs already are.
+If anything, the real surprise is not that [AI systems process so many PDFs](/blog/why-pdf-best-format-for-llms-and-ai) — it is that we rarely stop to consider how central PDFs already are.
 
 Hundreds of millions per day.  
 Possibly close to a billion.
@@ -491,6 +521,8 @@ So when someone claims a PDF generation API is “carbon-neutral,” what does t
 
 That distinction matters.
 
+<img src="/assets/blog/icons/005-battery full.svg" alt="Energy" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## Why PDF Generation Has a Carbon Footprint
 
 Generating a PDF is not just saving a file. In modern systems, it often involves:
@@ -501,11 +533,13 @@ Generating a PDF is not just saving a file. In modern systems, it often involves
 - Network transfer
 - Logging and monitoring systems
 
-Multiply that by hundreds of millions of PDFs generated daily worldwide, and the energy impact becomes real.
+Multiply that by [hundreds of millions of PDFs generated daily worldwide](/blog/how-many-pdfs-are-generated-every-day), and the energy impact becomes real.
 
 PDF generation is invisible infrastructure — but invisible does not mean impact-free.
 
-## What “Carbon-Neutral” Actually Means
+<img src="/assets/blog/icons/041-scale.svg" alt="Balance" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## What "Carbon-Neutral" Actually Means
 
 Carbon neutrality relies on a simple principle: if emissions cannot be eliminated, they must be compensated.
 
@@ -548,6 +582,8 @@ Not realistically. Even fully renewable infrastructure depends on physical hardw
 Compensation does not erase emissions. It acknowledges them and funds measurable climate projects to balance them.
 
 > That is not perfection. **It is responsibility.**
+
+<img src="/assets/blog/icons/031-guarantee.svg" alt="Quality" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## Why Methodology Matters: Our Approach
 
@@ -612,6 +648,8 @@ In a world transitioning from paper to digital workflows, this was unacceptable.
 
 To understand why that mattered, we need to go back to the early 1990s.
 
+<img src="/assets/blog/icons/005-calendar.svg" alt="History" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## The Problem: Digital Documents Were Not Portable
 
 In the late 1980s and early 1990s, documents were typically created in proprietary formats: WordPerfect, Microsoft Word, PageMaker, and others. Sharing them required the recipient to have the same software — and often the same version.
@@ -621,6 +659,8 @@ Even then, results were inconsistent.
 Printing technologies were evolving rapidly. Laser printers, PostScript devices, desktop publishing software — everything was fragmented. There was no universal way to guarantee that a document would print exactly as intended.
 
 > This fragmentation was **expensive for businesses** and chaotic for publishers.
+
+<img src="/assets/blog/icons/011-idea.svg" alt="Innovation" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## The Birth of PDF at Adobe
 
@@ -633,6 +673,8 @@ The idea was revolutionary:
 - Store vector graphics and images together
 - Describe pages using precise drawing instructions
 - Make the file independent of the original software
+
+This architecture is still at the heart of [how PDFs are structured today](/blog/anatomy-of-a-pdf-document).
 
 > A PDF was not meant to be edited. It was meant to be **trusted.**
 
@@ -697,6 +739,8 @@ When cloud computing emerged, PDF adapted. When mobile devices became dominant, 
 
 > It did not resist change. It absorbed it.
 
+<img src="/assets/blog/icons/050-trophy.svg" alt="Success" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## Why PDF Survived
 
 PDF survived because it solved a structural problem:
@@ -714,7 +758,7 @@ While web technologies focused on dynamism and interaction, PDF focused on certa
 
 Today, PDF is no longer just a printable document. It is a data source for AI systems, an output format for SaaS platforms, and a legal artifact in digital workflows.
 
-Hundreds of millions of PDFs are generated daily. The format designed for printers now powers APIs, automation pipelines, and machine learning workflows.
+[Hundreds of millions of PDFs are generated daily](/blog/how-many-pdfs-are-generated-every-day). The format designed for printers now powers APIs, automation pipelines, and [machine learning workflows](/blog/why-pdf-best-format-for-llms-and-ai).
 
 > PDF was built for permanence.  
 > Permanence turned out to be future-proof.
@@ -743,6 +787,8 @@ Three decades later, the same problem still exists: documents must look the same
   readTime: '6 min read',
   tags: ['GDPR', 'Compliance'],
   content: `
+<img src="/assets/blog/icons/046-secure.svg" alt="Security" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## The Hidden Risk Behind PDF Generation
 
 Generating a PDF sounds harmless. It’s just rendering HTML into a document.
@@ -802,6 +848,8 @@ Then personal data may persist beyond what you intended.
 
 The safest architecture is one that treats PDF generation as ephemeral by design.
 
+<img src="/assets/blog/icons/024-safebox.svg" alt="Protection" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
 ## What GDPR-Compliant PDF Generation Looks Like
 
 A compliant PDF generation pipeline should ideally:
@@ -847,10 +895,12 @@ GDPR compliance is rarely about advanced cryptography. It is about discipline.
 Front-end PDF generation keeps data on the user’s device, but sacrifices reliability.  
 Back-end generation gives control, but requires strict internal safeguards.  
 API-based generation shifts responsibility to a provider, which must be carefully vetted.
-
+Learn more about [choosing the right PDF generation approach](/blog/pdf-generation-api-how-to-choose-2026).
 Each model can be compliant — or non-compliant — depending on implementation.
 
 There is no inherently “GDPR-safe” architecture. Only **GDPR-safe practices**.
+
+<img src="/assets/blog/icons/017-approved.svg" alt="Trust" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
 
 ## Transparency Builds Trust
 

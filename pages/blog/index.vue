@@ -47,8 +47,55 @@ useHead({
       <section class="py-16 px-6">
         <div class="max-w-4xl mx-auto">
           <div class="space-y-8">
+            <!-- Latest Post -->
+            <div v-if="posts.length > 0">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">Our Latest Post</h2>
+              <article 
+                :key="posts[0].slug"
+                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
+              >
+                <NuxtLink :to="`/blog/${posts[0].slug}`" class="block group">
+                  <!-- Tags -->
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    <span 
+                      v-for="tag in posts[0].tags" 
+                      :key="tag"
+                      class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-700 rounded-full"
+                    >
+                      {{ tag }}
+                    </span>
+                  </div>
+
+                  <!-- Title -->
+                  <h3 class="text-2xl font-bold text-gray-900 group-hover:text-blue-500 transition-colors mb-3">
+                    {{ posts[0].title }}
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="text-gray-600 mb-4">
+                    {{ posts[0].description }}
+                  </p>
+
+                  <!-- Meta -->
+                  <div class="flex items-center text-sm text-gray-500 gap-4">
+                    <span>{{ posts[0].author }}</span>
+                    <span>•</span>
+                    <time :datetime="posts[0].date">{{ formatDate(posts[0].date) }}</time>
+                    <span>•</span>
+                    <span>{{ posts[0].readTime }}</span>
+                  </div>
+                </NuxtLink>
+              </article>
+            </div>
+
+            <!-- Separator -->
+            <div v-if="posts.length > 1" class="border-t border-gray-300 pt-12 mt-12">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">All Posts</h2>
+            </div>
+
+            <!-- Other Posts -->
             <article 
-              v-for="post in posts" 
+              v-for="post in posts.slice(1)" 
               :key="post.slug"
               class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
             >
@@ -65,9 +112,9 @@ useHead({
                 </div>
 
                 <!-- Title -->
-                <h2 class="text-2xl font-bold text-gray-900 group-hover:text-blue-500 transition-colors mb-3">
+                <h3 class="text-2xl font-bold text-gray-900 group-hover:text-blue-500 transition-colors mb-3">
                   {{ post.title }}
-                </h2>
+                </h3>
 
                 <!-- Description -->
                 <p class="text-gray-600 mb-4">
