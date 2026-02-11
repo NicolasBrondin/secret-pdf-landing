@@ -7,6 +7,7 @@ import 'highlight.js/styles/github-dark.css'
 import { getPostBySlug, type BlogPost } from '~/data/posts'
 
 const route = useRoute()
+const { trackEvent } = usePlausible()
 
 // Configure marked with syntax highlighting
 marked.use(markedHighlight({
@@ -122,12 +123,12 @@ watchEffect(() => {
           <p class="text-slate-300 mb-6">
             Sign up and start creating dynamic PDFs with one API call.
           </p>
-          <a 
-            href="https://app.secretpdf.io"
-            class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-          >
+          <NuxtLink 
+            to="https://app.secretpdf.io"
+            class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors" 
+            @click="trackEvent('Signup Click', { location: 'blog', post: post?.slug })" >
             Get Started
-        </a>
+        </NuxtLink>
         </div>
       </section>
 

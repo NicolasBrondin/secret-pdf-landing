@@ -53,15 +53,16 @@
       <div class="text-center mt-16 p-10 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 rounded-3xl">
         <h3 class="text-2xl font-bold text-white mb-3">Ready to get started?</h3>
         <p class="text-emerald-100 mb-6">Create an account in 10 seconds and start generating PDFs !</p>
-        <a 
-          href="https://app.secretpdf.io"
+        <NuxtLink
+          to="https://app.secretpdf.io"
           class="bg-white hover:bg-gray-50 text-emerald-700 font-semibold py-4 px-8 rounded-xl transition-all duration-200 hover:shadow-lg inline-flex items-center"
+          @click="trackEvent('Signup Click', { location: 'faq' })"
         >
           Create an account
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </section>
@@ -69,6 +70,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
+const { trackEvent } = usePlausible()
 
 // FAQ data interface
 interface FAQItem {

@@ -44,12 +44,13 @@
         </nav>
         
         <!-- Join Waitlist Button -->
-        <a 
-          href="https://app.secretpdf.io"
+        <NuxtLink
+          to="https://app.secretpdf.io"
           class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white font-medium px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-blue-400/25 hover:shadow-blue-400/40 hover:scale-105"
+          @click="trackEvent('Signup Click', { location: 'header' })"
         >
           Create account
-      </a>
+      </NuxtLink>
       </div>
     </div>
   </header>
@@ -59,6 +60,8 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import logoLight from '@/assets/logo.svg'
 import logoDark from '@/assets/logo-dark.svg'
+
+const { trackEvent } = usePlausible()
 
 // Define props
 const props = defineProps<{

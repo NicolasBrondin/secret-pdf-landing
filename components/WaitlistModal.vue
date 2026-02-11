@@ -34,6 +34,7 @@
           method="post" 
           target="_blank"
           class="space-y-4"
+          @submit="handleSubmit"
         >
           <div>
             <input 
@@ -67,6 +68,8 @@
 </template>
 
 <script setup lang="ts">
+const { trackEvent } = usePlausible()
+
 // Props
 defineProps<{
   modelValue: boolean
@@ -81,4 +84,9 @@ const emit = defineEmits<{
 const closeModal = () => {
   emit('update:modelValue', false)
 }
+
+const handleSubmit = () => {
+  trackEvent('Waitlist Signup', { location: 'modal' })
+}
+
 </script>
