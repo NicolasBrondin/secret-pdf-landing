@@ -28,7 +28,7 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'The developer-friendly HTML to PDF API - Secret PDF' },
         { property: 'og:description', content: 'Convert HTML to PDF with our developer-friendly API. Fast, reliable, and easy to integrate. Start generating PDFs in minutes.' },
         { property: 'og:url', content: baseURL },
-        { property: 'og:image', content: `${baseURL}/og-image.jpg` },
+        { property: 'og:image', content: `${baseURL}/open-graph.jpg` },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'The developer-friendly HTML to PDF API - Secret PDF' },
         { name: 'twitter:description', content: 'Convert HTML to PDF with our developer-friendly API. Fast, reliable, and easy to integrate. Start generating PDFs in minutes.' },
-        { name: 'twitter:image', content: `${baseURL}/og-image.jpg` },
+        { name: 'twitter:image', content: `${baseURL}/open-graph.jpg` },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/icon.svg' },
