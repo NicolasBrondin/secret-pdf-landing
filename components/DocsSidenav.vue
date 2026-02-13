@@ -22,12 +22,12 @@ const navItems = [
     icon: '📝',
     link: '/docs/templates',
   },
-  {
+  
+  /*{
     title: 'API Keys',
     icon: '🔑',
     link: '/docs/api-keys',
-  },
-  /*{
+  },{
     title: 'Storage',
     icon: '💾',
     link: '/docs/storage',
@@ -45,7 +45,7 @@ const isActive = (link: string) => {
 </script>
 
 <template>
-  <aside class="sticky top-32 h-fit">
+  <aside class="lg:sticky lg:top-32 h-fit">
     <nav class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
       <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
         Documentation

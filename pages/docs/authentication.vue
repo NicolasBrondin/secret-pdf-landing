@@ -12,7 +12,7 @@ useHead({
     <AppHeader />
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-      <div class="grid lg:grid-cols-[280px,1fr] gap-8">
+      <div class="flex flex-col lg:grid lg:grid-cols-[280px,1fr] gap-8">
         <DocsSidenav />
         
         <div>
@@ -28,7 +28,7 @@ useHead({
         <div class="text-5xl mb-4">🔐</div>
         <h1 class="text-4xl font-bold text-white mb-4">Authentication</h1>
         <p class="text-xl text-slate-300">
-          Authenticate your API requests using API keys or OAuth tokens
+          Authenticate your API requests using API keys
         </p>
       </div>
 
@@ -39,218 +39,17 @@ useHead({
           <p class="text-slate-300 mb-4">
             Best for server-to-server communication and simple integrations
           </p>
-          <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm">
+          <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm mb-2">
             <span class="text-blue-400">X-API-Key</span>: <span class="text-green-400">your-api-key</span>
           </div>
+          <p class="text-slate-300">Get your key from our <a href="https://app.secretpdf.io/api-keys" target="_blank" class="text-blue-400 hover:text-blue-300 underline">dashboard</a>.</p>
         </div>
 
-        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
-          <h3 class="text-xl font-bold text-white mb-3">👤 OAuth Authentication</h3>
-          <p class="text-slate-300 mb-4">
-            Best for user-specific actions and web applications
-          </p>
-          <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm">
-            <span class="text-blue-400">Authorization</span>: <span class="text-green-400">Bearer your-token</span>
-          </div>
-        </div>
       </div>
 
-      <!-- Get User Info -->
-      <ApiEndpoint
-        method="GET"
-        path="/auth/me"
-        title="Get Current User"
-        description="Get information about the authenticated user"
-        :parameters="[
-          { name: 'Authorization', type: 'string', required: true, description: 'Bearer token' }
-        ]"
-        :responses="[
-          {
-            status: 200,
-            description: 'User information retrieved',
-            schema: `{
-  &quot;success&quot;: true,
-  &quot;user&quot;: {
-    &quot;id&quot;: &quot;user-123&quot;,
-    &quot;email&quot;: &quot;user@example.com&quot;,
-    &quot;name&quot;: &quot;John Doe&quot;,
-    &quot;createdAt&quot;: &quot;2026-01-15T10:00:00Z&quot;
-  },
-  &quot;billing&quot;: {
-    &quot;plan&quot;: &quot;pro&quot;,
-    &quot;credits&quot;: 5000,
-    &quot;customerId&quot;: &quot;cus_abc123&quot;
-  }
-}`
-          }
-        ]"
-        :code-example="`import { AuthenticationApi, Configuration } from '@secret-pdf/sdk'
 
-const config = new Configuration({
-  accessToken: 'your-bearer-token'
-})
+      
 
-const api = new AuthenticationApi(config)
-const user = await api.authMeGet()
-
-console.log('User:', user.user)
-console.log('Plan:', user.billing.plan)`"
-      />
-
-      <!-- Get Credits -->
-      <ApiEndpoint
-        method="GET"
-        path="/auth/credits"
-        title="Get Credits Balance"
-        description="Get current credit balance and usage"
-        :responses="[
-          {
-            status: 200,
-            description: 'Credits information',
-            schema: `{
-  &quot;success&quot;: true,
-  &quot;credits&quot;: {
-    &quot;available&quot;: 5000,
-    &quot;used&quot;: 1234,
-    &quot;total&quot;: 10000,
-    &quot;resetDate&quot;: &quot;2026-03-01T00:00:00Z&quot;
-  }
-}`
-          }
-        ]"
-        :code-example="`const credits = await api.authCreditsGet()
-console.log('Available credits:', credits.credits.available)`"
-      />
-
-      <!-- GitHub OAuth Callback -->
-      <ApiEndpoint
-        method="GET"
-        path="/auth/github/callback"
-        title="GitHub OAuth Callback"
-        description="Handle GitHub OAuth callback (internal use)"
-        :parameters="[
-          { name: 'code', type: 'string', required: false, description: 'Authorization code from GitHub' },
-          { name: 'state', type: 'string', required: false, description: 'OAuth state parameter' },
-          { name: 'error', type: 'string', required: false, description: 'Error code if auth failed' }
-        ]"
-        :responses="[
-          {
-            status: 200,
-            description: 'Authentication successful',
-            schema: `{
-  &quot;success&quot;: true,
-  &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;,
-  &quot;user&quot;: {
-    &quot;id&quot;: &quot;user-123&quot;,
-    &quot;email&quot;: &quot;user@example.com&quot;,
-    &quot;name&quot;: &quot;John Doe&quot;
-  }
-}`
-          },
-          {
-            status: 400,
-            description: 'Authentication failed'
-          }
-        ]"
-      />
-
-      <!-- Logout -->
-      <ApiEndpoint
-        method="POST"
-        path="/auth/logout"
-        title="Logout"
-        description="Invalidate current session token"
-        :responses="[
-          {
-            status: 200,
-            description: 'Logged out successfully',
-            schema: `{
-  &quot;success&quot;: true,
-  &quot;message&quot;: &quot;Logged out successfully&quot;
-}`
-          }
-        ]"
-        :code-example="`await api.authLogoutPost()`"
-      />
-
-      <!-- Billing Portal -->
-      <ApiEndpoint
-        method="GET"
-        path="/auth/billing"
-        title="Get Billing Portal URL"
-        description="Get customer portal URL for managing payment details"
-        :parameters="[
-          { name: 'userId', type: 'string', required: true, description: 'User ID' }
-        ]"
-        :responses="[
-          {
-            status: 200,
-            description: 'Billing portal URL',
-            schema: `{
-  &quot;success&quot;: true,
-  &quot;url&quot;: &quot;https://billing.polar.sh/portal/cus_abc123&quot;
-}`
-          }
-        ]"
-        :code-example="`const billing = await api.authBillingGet({ userId: 'user-123' })
-window.location.href = billing.url`"
-      />
-
-      <!-- Checkout -->
-      <ApiEndpoint
-        method="POST"
-        path="/auth/checkout"
-        title="Create Checkout Session"
-        description="Create a checkout session for purchasing credits"
-        :responses="[
-          {
-            status: 200,
-            description: 'Checkout session created',
-            schema: `{
-  &quot;success&quot;: true,
-  &quot;checkoutUrl&quot;: &quot;https://checkout.polar.sh/session_abc123&quot;
-}`
-          }
-        ]"
-      />
-
-      <!-- Get Invoices -->
-      <ApiEndpoint
-        method="GET"
-        path="/auth/invoices"
-        title="List Invoices"
-        description="Get list of invoices for the authenticated user"
-        :parameters="[
-          { name: 'page', type: 'number', required: false, description: 'Page number (default: 1)' },
-          { name: 'limit', type: 'number', required: false, description: 'Items per page (default: 20)' }
-        ]"
-        :responses="[
-          {
-            status: 200,
-            description: 'Invoices list',
-            schema: `{
-  &quot;success&quot;: true,
-  &quot;invoices&quot;: [
-    {
-      &quot;id&quot;: &quot;inv-123&quot;,
-      &quot;amount&quot;: 2900,
-      &quot;currency&quot;: &quot;USD&quot;,
-      &quot;status&quot;: &quot;paid&quot;,
-      &quot;date&quot;: &quot;2026-02-01T00:00:00Z&quot;,
-      &quot;pdfUrl&quot;: &quot;https://...&quot;
-    }
-  ],
-  &quot;pagination&quot;: {
-    &quot;page&quot;: 1,
-    &quot;limit&quot;: 20,
-    &quot;total&quot;: 45
-  }
-}`
-          }
-        ]"
-        :code-example="`const invoices = await api.authInvoicesGet({ page: 1, limit: 20 })
-console.log('Invoices:', invoices.invoices)`"
-      />
 
       <!-- Recent Activity -->
       <ApiEndpoint
@@ -265,15 +64,22 @@ console.log('Invoices:', invoices.invoices)`"
             schema: `{
   &quot;success&quot;: true,
   &quot;stats&quot;: {
-    &quot;documentsGenerated&quot;: 1234,
-    &quot;templatesCreated&quot;: 45,
-    &quot;apiCalls&quot;: 5678
+    &quot;totalTemplates&quot;: 1234,
+    &quot;totalActiveApiKeys&quot;: 1234,
+    &quot;totalGeneratedPdfs&quot;: 45,
+    &quot;generatedPdfsLast30Days&quot;: 5678,
+    &quot;totalCreditsUsed&quot;: 5678,
+    &quot;creditsUsedCurrentMonth&quot;: 5678
   },
   &quot;recentActivities&quot;: [
     {
-      &quot;type&quot;: &quot;document_generated&quot;,
-      &quot;templateName&quot;: &quot;Invoice Template&quot;,
-      &quot;timestamp&quot;: &quot;2026-02-09T12:34:56Z&quot;
+      &quot;id&quot;: &quot;3617f53c-6d2b-4dcb-bce8-686e12730a0a&quot;,
+      &quot;activityType&quot;: &quot;document_generated&quot;,
+      &quot;entityType&quot;: &quot;template&quot;,
+      &quot;entityId&quot;: &quot;1a17f53c-5d2b-3dcb-ace8-986e22730a0a&quot;,
+      &quot;entityName&quot;: &quot;Invoice Template&quot;,
+      &quot;metadata&quot;: {},
+      &quot;createdAt&quot;: &quot;2026-02-09T12:34:56Z&quot;
     }
   ]
 }`
@@ -303,12 +109,7 @@ console.log('Invoices:', invoices.invoices)`"
               <strong class="text-white">Rotate Keys Regularly:</strong> Create new API keys and deactivate old ones periodically
             </p>
           </div>
-          <div class="flex gap-3">
-            <span class="text-blue-400 text-xl">•</span>
-            <p>
-              <strong class="text-white">Use OAuth for User Actions:</strong> Use OAuth tokens for user-specific operations in web apps
-            </p>
-          </div>
+          
         </div>
       </div>
         </div>

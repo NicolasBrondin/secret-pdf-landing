@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import json from 'highlight.js/lib/languages/json'
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('json', json)
+
 interface Parameter {
   name: string
   type: string
@@ -33,6 +40,50 @@ const methodColors = {
 }
 
 const showCode = ref(false)
+const codeRef = ref<HTMLElement | null>(null)
+const requestBodyRef = ref<HTMLElement | null>(null)
+const responseRefs = ref<(HTMLElement | null)[]>([])
+
+const highlightCode = () => {
+  if (codeRef.value && props.codeExample) {
+    codeRef.value.textContent = props.codeExample
+    hljs.highlightElement(codeRef.value)
+  }
+}
+
+const highlightRequestBody = () => {
+  if (requestBodyRef.value && props.requestBody) {
+    requestBodyRef.value.textContent = props.requestBody
+    hljs.highlightElement(requestBodyRef.value)
+  }
+}
+
+const highlightResponses = () => {
+  if (props.responses) {
+    props.responses.forEach((response, index) => {
+      if (response.schema && responseRefs.value[index]) {
+        responseRefs.value[index]!.textContent = response.schema
+        hljs.highlightElement(responseRefs.value[index]!)
+      }
+    })
+  }
+}
+
+watch(showCode, (newVal) => {
+  if (newVal) {
+    nextTick(() => {
+      highlightCode()
+    })
+  }
+})
+
+onMounted(() => {
+  highlightRequestBody()
+  highlightResponses()
+  if (showCode.value) {
+    highlightCode()
+  }
+})
 </script>
 
 <template>
@@ -95,7 +146,7 @@ const showCode = ref(false)
     <div v-if="requestBody" class="mb-6">
       <h4 class="text-sm font-semibold text-white mb-3 uppercase tracking-wide">Request Body</h4>
       <div class="bg-slate-950/50 rounded-xl p-4">
-        <pre class="text-slate-300 font-mono text-sm overflow-x-auto">{{ requestBody }}</pre>
+        <pre><code ref="requestBodyRef" class="hljs language-json text-sm overflow-x-auto block"></code></pre>
       </div>
     </div>
 
@@ -104,7 +155,7 @@ const showCode = ref(false)
       <h4 class="text-sm font-semibold text-white mb-3 uppercase tracking-wide">Responses</h4>
       <div class="space-y-3">
         <div
-          v-for="response in responses"
+          v-for="(response, index) in responses"
           :key="response.status"
           class="bg-slate-950/50 rounded-xl p-4"
         >
@@ -120,7 +171,7 @@ const showCode = ref(false)
             </span>
             <span class="text-slate-400">{{ response.description }}</span>
           </div>
-          <pre v-if="response.schema" class="text-slate-300 font-mono text-xs mt-2 overflow-x-auto">{{ response.schema }}</pre>
+          <pre v-if="response.schema"><code :ref="el => responseRefs[index] = el as HTMLElement | null" class="hljs language-json text-xs overflow-x-auto block"></code></pre>
         </div>
       </div>
     </div>
@@ -138,8 +189,15 @@ const showCode = ref(false)
         v-if="showCode"
         class="mt-3 bg-slate-950/50 rounded-xl p-4 overflow-x-auto"
       >
-        <pre class="text-slate-300 font-mono text-sm">{{ codeExample }}</pre>
+        <pre><code ref="codeRef" class="hljs language-javascript text-sm block"></code></pre>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+code.hljs {
+  background: transparent;
+  padding: 0;
+}
+</style>

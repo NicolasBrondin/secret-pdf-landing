@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import bash from 'highlight.js/lib/languages/bash'
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('bash', bash)
+
 useHead({
   title: 'API Documentation - Secret PDF',
   meta: [
@@ -28,7 +35,7 @@ const apiCategories = [
     link: '/docs/templates',
     endpoints: 6
   },
-  {
+  /*{
     title: 'API Keys',
     description: 'Manage your API keys for authentication',
     icon: '🔑',
@@ -48,8 +55,80 @@ const apiCategories = [
     icon: '🔗',
     link: '/docs/webhooks',
     endpoints: 1
-  }
+  }*/
 ]
+
+const selectedExample = ref<'nodejs' | 'curl'>('nodejs')
+const quickStartNodeCode = ref<HTMLElement | null>(null)
+const quickStartCurlCode = ref<HTMLElement | null>(null)
+const authApiKeyCode = ref<HTMLElement | null>(null)
+const authBearerCode = ref<HTMLElement | null>(null)
+
+const highlightQuickStartCode = () => {
+  if (quickStartNodeCode.value) {
+    const code = `import { SecretPDFClient } from '@secretpdf/sdk';
+
+// Initialize the client
+const client = new SecretPDFClient({
+  apiKey: "your-api-key"
+});
+
+try {
+    const result = await client.generate({
+        templateId: "template-123",
+        sandbox: true, // for testing
+        data: {
+            name: "John Doe",
+            date: "2024-06-01"
+        }
+    });
+    console.log('PDF generated:', result);
+} catch (error) {
+    console.error('Error generating PDF:', error);
+}
+`
+    quickStartNodeCode.value.textContent = code
+    hljs.highlightElement(quickStartNodeCode.value)
+  }
+
+  if (quickStartCurlCode.value) {
+    const code = `curl -X POST https://api.secretpdf.io/generate \\
+  -H "X-API-Key: your-api-key" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "templateId": "template-123",
+    "sandbox": true,
+    "data": {
+      "name": "John Doe",
+      "date": "2024-06-01"
+    }
+  }'`
+    quickStartCurlCode.value.textContent = code
+    hljs.highlightElement(quickStartCurlCode.value)
+  }
+}
+
+watch(selectedExample, () => {
+  nextTick(() => {
+    highlightQuickStartCode()
+  })
+})
+
+onMounted(() => {
+  highlightQuickStartCode()
+
+  if (authApiKeyCode.value) {
+    const code = `X-API-Key: your-api-key`
+    authApiKeyCode.value.textContent = code
+    hljs.highlightElement(authApiKeyCode.value)
+  }
+
+  if (authBearerCode.value) {
+    const code = `Authorization: Bearer your-token`
+    authBearerCode.value.textContent = code
+    hljs.highlightElement(authBearerCode.value)
+  }
+})
 </script>
 
 <template>
@@ -57,7 +136,7 @@ const apiCategories = [
     <AppHeader />
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="grid lg:grid-cols-[280px,1fr] gap-8">
+      <div class="flex flex-col lg:grid lg:grid-cols-[280px,1fr] gap-8">
         <DocsSidenav />
         
         <div class="py-12">
@@ -67,14 +146,17 @@ const apiCategories = [
           API Documentation
         </h1>
         <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-          Complete reference for the Secret PDF API. Generate PDFs from HTML templates with AI assistance.
+          Complete reference for the Secret PDF API. Generate PDFs from HTML templates in one API call.
         </p>
         <div class="mt-8 flex items-center justify-center gap-4">
           <span class="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-400 text-sm font-mono">
-            v1.0.0
+            v1.0.3
           </span>
-          <a href="https://github.com" target="_blank" class="px-4 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-300 hover:text-white hover:border-slate-600 transition-all text-sm">
+          <a href="https://github.com/SecretPDF/secretpdf-js-sdk" target="_blank" class="px-4 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-300 hover:text-white hover:border-slate-600 transition-all text-sm">
             View on GitHub
+          </a>
+          <a href="https://www.npmjs.com/package/@secretpdf/sdk" target="_blank" class="px-4 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-300 hover:text-white hover:border-slate-600 transition-all text-sm">
+            View on NPM
           </a>
         </div>
       </div>
@@ -83,26 +165,47 @@ const apiCategories = [
       <div class="mb-16 bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
         <h2 class="text-2xl font-bold text-white mb-4">Quick Start</h2>
         <p class="text-slate-300 mb-6">
-          Get started with the Secret PDF API in minutes. First, get your API key from the dashboard.
+          Get started with the Secret PDF API in minutes. First, get <a href="https://app.secretpdf.io/api-keys" target="_blank" class="text-blue-400 hover:text-blue-300 underline">your API key</a> from the dashboard.
         </p>
-        <div class="bg-slate-950/50 rounded-xl p-6 font-mono text-sm overflow-x-auto">
+        
+        <!-- Toggle Tabs -->
+        <div class="flex gap-2 mb-4">
+          <button
+            @click="selectedExample = 'nodejs'"
+            :class="[
+              'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+              selectedExample === 'nodejs'
+                ? 'bg-blue-500/20 border border-blue-500/50 text-blue-400'
+                : 'bg-slate-800/50 border border-slate-700/50 text-slate-400 hover:text-slate-300 hover:border-slate-600'
+            ]"
+          >
+            Node.js
+          </button>
+          <button
+            @click="selectedExample = 'curl'"
+            :class="[
+              'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+              selectedExample === 'curl'
+                ? 'bg-blue-500/20 border border-blue-500/50 text-blue-400'
+                : 'bg-slate-800/50 border border-slate-700/50 text-slate-400 hover:text-slate-300 hover:border-slate-600'
+            ]"
+          >
+            cURL
+          </button>
+        </div>
+
+        <!-- Node.js Example -->
+        <div v-if="selectedExample === 'nodejs'" class="bg-slate-950/50 rounded-xl p-6 overflow-x-auto">
           <div class="text-slate-500 mb-2"># Install the SDK</div>
-          <div class="text-green-400">npm install @secret-pdf/sdk</div>
-          <div class="mt-4 text-slate-500 mb-2"># Generate a PDF</div>
-          <pre class="text-blue-300">
-<span class="text-purple-400">import</span> { <span class="text-yellow-300">DocumentsApi</span>, <span class="text-yellow-300">Configuration</span> } <span class="text-purple-400">from</span> <span class="text-green-400">'@secret-pdf/sdk'</span>
+          <div class="text-green-400 mb-4">npm install @secretpdf/sdk</div>
+          <div class="text-slate-500 mb-2"># Generate a PDF</div>
+          <pre><code ref="quickStartNodeCode" class="hljs language-javascript text-sm block"></code></pre>
+        </div>
 
-<span class="text-purple-400">const</span> config = <span class="text-purple-400">new</span> <span class="text-yellow-300">Configuration</span>({
-  apiKey: <span class="text-green-400">'your-api-key'</span>
-})
-
-<span class="text-purple-400">const</span> api = <span class="text-purple-400">new</span> <span class="text-yellow-300">DocumentsApi</span>(config)
-<span class="text-purple-400">const</span> response = <span class="text-purple-400">await</span> api.<span class="text-yellow-300">generatePost</span>({
-  generatePostRequest: {
-    templateId: <span class="text-green-400">'template-123'</span>,
-    data: { name: <span class="text-green-400">'John Doe'</span> }
-  }
-})</pre>
+        <!-- cURL Example -->
+        <div v-if="selectedExample === 'curl'" class="bg-slate-950/50 rounded-xl p-6 overflow-x-auto">
+          <div class="text-slate-500 mb-4"># Generate a PDF with cURL</div>
+          <pre><code ref="quickStartCurlCode" class="hljs language-bash text-sm block"></code></pre>
         </div>
       </div>
 
@@ -135,18 +238,18 @@ const apiCategories = [
       <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
         <h2 class="text-2xl font-bold text-white mb-4">Base URL</h2>
         <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm">
-          <span class="text-slate-500">https://</span><span class="text-blue-400">api.secret-pdf.com</span>
+          <span class="text-slate-500">https://</span><span class="text-blue-400">api.secretpdf.io</span>
         </div>
         <div class="mt-6">
           <h3 class="text-lg font-semibold text-white mb-3">Authentication</h3>
           <p class="text-slate-300 mb-3">
-            All API requests require authentication using an API key or Bearer token:
+            All API requests require authentication using an API key:
           </p>
-          <div class="bg-slate-950/50 rounded-xl p-4 font-mono text-sm space-y-2">
-            <div><span class="text-slate-500"># Using API Key</span></div>
-            <div><span class="text-blue-400">X-API-Key</span>: <span class="text-green-400">your-api-key</span></div>
-            <div class="mt-3"><span class="text-slate-500"># Using Bearer Token</span></div>
-            <div><span class="text-blue-400">Authorization</span>: <span class="text-green-400">Bearer your-token</span></div>
+          <div class="bg-slate-950/50 rounded-xl p-4 space-y-4">
+            <div>
+              <div class="text-slate-500 mb-2"># Using API Key</div>
+              <pre><code ref="authApiKeyCode" class="hljs language-bash text-sm block"></code></pre>
+            </div>
           </div>
         </div>
       </div>
@@ -162,5 +265,10 @@ const apiCategories = [
 pre {
   margin: 0;
   line-height: 1.6;
+}
+
+code.hljs {
+  background: transparent;
+  padding: 0;
 }
 </style>
