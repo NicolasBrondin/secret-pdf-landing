@@ -1,0 +1,152 @@
+# Secret PDF
+
+> The developer-friendly HTML to PDF API
+
+Secret PDF is a modern, GDPR & HIPAA compliant PDF generation service that allows developers to convert HTML templates into PDFs with a single API call.
+
+## Overview
+
+Secret PDF provides a simple REST API for generating professional PDF documents from HTML templates. It's designed for developers who need reliable, high-quality PDF generation without the complexity of managing PDF libraries or infrastructure.
+
+## Key Features
+
+- **Simple API**: Generate PDFs with a single API call
+- **Template System**: Create reusable HTML templates with variable injection
+- **Multiple Authentication Methods**: API keys or OAuth Bearer tokens
+- **SDK Support**: Official JavaScript/TypeScript SDK available on npm
+- **Cloud Storage Integration**: Optional external storage (S3, Azure Blob, etc.)
+- **GDPR & HIPAA Compliant**: Enterprise-grade security and compliance
+- **Carbon Neutral**: Climate-conscious infrastructure
+- **Usage Analytics**: Track document generation and monitor consumption
+
+## API Documentation
+
+Base URL: https://api.secret-pdf.com
+
+### Authentication
+
+All API requests require authentication using one of the following methods:
+
+**API Key (Header)**
+```
+X-API-Key: your-api-key
+```
+
+**OAuth Bearer Token (Header)**
+```
+Authorization: Bearer your-token
+```
+
+### Main Endpoints
+
+**Generate PDF** - `POST /generate`
+Generate a PDF document from a template with custom data.
+
+**List Templates** - `GET /templates`
+Get all templates for authenticated user.
+
+**Create Template** - `POST /templates`
+Create a new HTML template.
+
+**Get Template** - `GET /templates/{templateId}`
+Retrieve a specific template by ID.
+
+**Update Template** - `PUT /templates/{templateId}`
+Update an existing template.
+
+**Delete Template** - `DELETE /templates/{templateId}`
+Remove a template.
+
+**Usage Statistics** - `GET /documents/usage-stats`
+View document generation statistics for the last 7 days.
+
+**Current User** - `GET /auth/me`
+Get information about the authenticated user.
+
+**Credits Balance** - `GET /auth/credits`
+Get current credit balance and usage.
+
+## Quick Start
+
+### Using the SDK (Node.js)
+
+```bash
+npm install @secretpdf/sdk
+```
+
+```javascript
+import { SecretPDFClient } from '@secretpdf/sdk';
+
+const client = new SecretPDFClient({
+  apiKey: "your-api-key"
+});
+
+const result = await client.generate({
+    templateId: "template-123",
+    sandbox: true,
+    data: {
+        name: "John Doe",
+        date: "2024-06-01"
+    }
+});
+```
+
+### Using cURL
+
+```bash
+curl -X POST https://api.secret-pdf.com/generate \
+  -H "X-API-Key: your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "templateId": "template-123",
+    "sandbox": true,
+    "data": {
+      "name": "John Doe",
+      "date": "2024-06-01"
+    }
+  }'
+```
+
+## Template Data
+
+Templates use Handlebars syntax for variable injection:
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Invoice for {{name}}</h1>
+  <p>Date: {{date}}</p>
+  {{#each items}}
+    <div>{{product}}: ${{price}}</div>
+  {{/each}}
+</body>
+</html>
+```
+
+## Pricing
+
+- **Free Tier**: 100 documents/month
+- **Starter**: $19/month - 1,000 documents
+- **Pro**: $49/month - 5,000 documents + priority support
+- **Enterprise**: Custom pricing - unlimited documents + dedicated support
+
+## Resources
+
+- Website: https://secret-pdf.com
+- Documentation: https://secret-pdf.com/docs
+- GitHub SDK: https://github.com/SecretPDF/secretpdf-js-sdk
+- NPM Package: https://www.npmjs.com/package/@secretpdf/sdk
+- API Version: v1.0.3
+
+## Technical Stack
+
+- Built with Nuxt 3, TypeScript, and Tailwind CSS
+- Syntax highlighting powered by highlight.js
+- Markdown processing with marked
+- GDPR & HIPAA compliant infrastructure
+- Carbon neutral hosting
+
+## Support
+
+For API support, feature requests, or technical questions, contact the Secret PDF team through the website or GitHub repository.
