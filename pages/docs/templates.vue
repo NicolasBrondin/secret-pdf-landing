@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const viewMode = ref<'reference' | 'sdk'>('sdk')
+
 useHead({
   title: 'Templates API - Secret PDF Documentation',
   meta: [
@@ -32,6 +34,11 @@ useHead({
         </p>
       </div>
 
+      <!-- View Toggle -->
+      <DocsViewToggle v-model="viewMode" />
+
+      <!-- API Reference View -->
+      <div v-if="viewMode === 'reference'">
       <!-- List Templates -->
       <ApiEndpoint
         method="GET"
@@ -50,9 +57,10 @@ useHead({
   &quot;success&quot;: true,
   &quot;templates&quot;: [
     {
-      &quot;id&quot;: &quot;template-123&quot;,
+      &quot;id&quot;: &quot;123abc&quot;,
       &quot;name&quot;: &quot;Invoice Template&quot;,
-      &quot;html&quot;: &quot;<!DOCTYPE html>...&quot;,
+      &quot;content&quot;: &quot;<main>...</main>&quot;,
+      &quot;size&quot;: &quot;A4&quot;,
       &quot;createdAt&quot;: &quot;2026-02-01T10:00:00Z&quot;,
       &quot;updatedAt&quot;: &quot;2026-02-05T14:30:00Z&quot;
     }
@@ -79,8 +87,8 @@ console.log('Templates:', templates.templates)`"
         title="Create Template"
         description="Create a new HTML template"
         :request-body="`{
-  &quot;name&quot;: &quot;Invoice Template&quot;,
-  &quot;html&quot;: &quot;<!DOCTYPE html><html>...&lt;/html>&quot;
+  &quot;templateName&quot;: &quot;Invoice Template&quot;,
+  &quot;templateContent&quot;: &quot;<main>...&lt;/main>&quot;
 }`"
         :responses="[
           {
@@ -92,7 +100,8 @@ console.log('Templates:', templates.templates)`"
   &quot;data&quot;: {
     &quot;id&quot;: &quot;template-123&quot;,
     &quot;name&quot;: &quot;Invoice Template&quot;,
-    &quot;html&quot;: &quot;<!DOCTYPE html>...&quot;,
+    &quot;size&quot;: &quot;A4&quot;,
+    &quot;content&quot;: &quot;<!DOCTYPE html>...&quot;,
     &quot;createdAt&quot;: &quot;2026-02-09T12:00:00Z&quot;
   }
 }`
@@ -141,7 +150,7 @@ console.log('Templates:', templates.templates)`"
             schema: `{
   &quot;id&quot;: &quot;template-123&quot;,
   &quot;name&quot;: &quot;Invoice Template&quot;,
-  &quot;html&quot;: &quot;<!DOCTYPE html>...&quot;,
+  &quot;content&quot;: &quot;<!DOCTYPE html>...&quot;,
   &quot;createdAt&quot;: &quot;2026-02-01T10:00:00Z&quot;
 }`
           },
@@ -165,8 +174,8 @@ console.log('Templates:', templates.templates)`"
           { name: 'templateId', type: 'string', required: true, description: 'Template ID' }
         ]"
         :request-body="`{
-  &quot;name&quot;: &quot;Updated Invoice Template&quot;,
-  &quot;html&quot;: &quot;<!DOCTYPE html>...&lt;/html>&quot;
+  &quot;templateName&quot;: &quot;Updated Invoice Template&quot;,
+  &quot;templateContent&quot;: &quot;<!DOCTYPE html>...&lt;/html>&quot;
 }`"
         :responses="[
           {
@@ -221,7 +230,7 @@ console.log('Templates:', templates.templates)`"
   &quot;data&quot;: {
     &quot;id&quot;: &quot;template-456&quot;,
     &quot;name&quot;: &quot;AI Generated Invoice&quot;,
-    &quot;html&quot;: &quot;<!DOCTYPE html>...&quot;
+    &quot;content&quot;: &quot;<!DOCTYPE html>...&quot;
   }
 }`
           }
@@ -253,7 +262,7 @@ console.log('Generated template ID:', response.data.id)`"
   &quot;message&quot;: &quot;Template created successfully&quot;,
   &quot;data&quot;: {
     &quot;id&quot;: &quot;template-789&quot;,
-    &quot;html&quot;: &quot;<!DOCTYPE html>...&quot;
+    &quot;content&quot;: &quot;<!DOCTYPE html>...&quot;
   }
 }`
           },
@@ -270,8 +279,161 @@ const response = await api.templatesGenerateFromPdfPost({
 })
 
 console.log('Template generated:', response.data.id)`"
-      />
+      />      </div>
 
+      <!-- SDK Examples View -->
+      <div v-else>
+        <SdkExample
+          title="List Templates"
+          description="Get all templates for authenticated user"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// List all templates
+const response = await client.listTemplates()
+
+console.log('Templates:', response.templates)
+response.templates.forEach(template => {
+  console.log(`- ${template.templateName} (ID: ${template.id})`)  
+})"
+        />
+
+        <SdkExample
+          title="Create Template"
+          description="Create a new HTML template"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Create a new template
+const result = await client.createTemplate({
+  templateName: 'Invoice Template',
+  templateSize: 'A4',
+  templateContent: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .invoice { max-width: 800px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div class=&quot;invoice&quot;>
+    <h1>Invoice #{{orderNumber}}</h1>
+    <p>Customer: {{name}}</p>
+    <p>Email: {{email}}</p>
+  </div>
+</body>
+</html>`
+})
+
+console.log('Template created:', result.template.id)"
+        />
+
+        <SdkExample
+          title="Get Template"
+          description="Retrieve a specific template by ID"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Get a template by ID
+const template = await client.getTemplate('template-123')
+
+console.log('Template name:', template.name)
+console.log('Template content:', template.content)
+console.log('Page size:', template.size)"
+        />
+
+        <SdkExample
+          title="Update Template"
+          description="Update an existing template"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Update a template
+const updated = await client.updateTemplate({
+  templateId: 'template-123',
+  templateName: 'Updated Invoice Template',
+  templateContent: '<!DOCTYPE html>...'
+})
+
+console.log('Template updated:', updated.template.id)"
+        />
+
+        <SdkExample
+          title="Delete Template"
+          description="Remove a template"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Delete a template
+await client.deleteTemplate('template-123')
+
+console.log('Template deleted')"
+        />
+
+        <SdkExample
+          title="Generate Template from Prompt (AI)"
+          description="Use AI to generate a template from a text description"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Generate template using AI
+const result = await client.generateTemplateFromPrompt({
+  prompt: 'Create a professional invoice template with company logo, billing and shipping addresses, itemized table with quantities and prices, subtotal, tax, and total',
+  params: {
+    companyName: '',
+    customerName: '',
+    items: [],
+    subtotal: '',
+    tax: '',
+    total: ''
+  },
+  templateName: 'AI Generated Invoice'
+})
+
+console.log('Generated template ID:', result.template.id)
+console.log('Template name:', result.template.templateName)"
+        />
+
+        <SdkExample
+          title="Generate Template from PDF (AI)"
+          description="Upload a PDF and let AI convert it to an HTML template"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+import fs from 'fs'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Read PDF file and create a Blob
+const pdfBuffer = fs.readFileSync('sample-invoice.pdf')
+const pdfBlob = new Blob([pdfBuffer], { type: 'application/pdf' })
+
+// Generate template from PDF
+const result = await client.generateTemplateFromPdf(pdfBlob)
+
+console.log('Template created from PDF:', result.template.id)
+console.log('Template name:', result.template.templateName)"
+        />
+      </div>
       <!-- Best Practices -->
       <div class="mt-12 bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
         <h2 class="text-2xl font-bold text-white mb-4">💡 Template Best Practices</h2>

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@secretpdf/sdk": "^1.0.3",
     "@tailwindcss/typography": "^0.5.19",
     "highlight.js": "^11.11.1",
     "marked": "^17.0.1",

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const viewMode = ref<'reference' | 'sdk'>('sdk')
+
 useHead({
   title: 'Documents API - Secret PDF Documentation',
   meta: [
@@ -32,6 +34,11 @@ useHead({
         </p>
       </div>
 
+      <!-- View Toggle -->
+      <DocsViewToggle v-model="viewMode" />
+
+      <!-- API Reference View -->
+      <div v-if="viewMode === 'reference'">
       <!-- Generate PDF Endpoint -->
       <ApiEndpoint
         method="POST"
@@ -47,10 +54,6 @@ useHead({
     &quot;name&quot;: &quot;John Doe&quot;,
     &quot;email&quot;: &quot;john@example.com&quot;,
     &quot;items&quot;: [...]
-  },
-  &quot;storage&quot;: {                         // Optional: External storage config
-    &quot;provider&quot;: &quot;s3&quot;,
-    &quot;path&quot;: &quot;documents/invoice.pdf&quot;
   },
   &quot;returnPdf&quot;: true                   // Return PDF in response (default: true)
 }`"
@@ -102,11 +105,7 @@ const response = await api.generatePost({
       ],
       total: 109.97
     },
-    storage: {
-      provider: 's3',
-      path: 'invoices/2026/02/invoice-001.pdf'
-    },
-    returnPdf: true
+    returnFile: true
   }
 })
 
@@ -165,6 +164,63 @@ const stats = await api.documentsUsageStatsGet()
 console.log('Total documents:', stats.data.totalDocuments)
 console.log('Daily breakdown:', stats.data.stats)`"
       />
+      </div>
+
+      <!-- SDK Examples View -->
+      <div v-else>
+        <SdkExample
+          title="Generate PDF"
+          description="Generate a PDF document from a template with custom data"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Generate a PDF from a template
+const result = await client.generate({
+  templateId: 'template-123',
+  data: {
+    name: 'John Doe',
+    email: 'john@example.com',
+    orderNumber: 'ORD-001',
+    items: [
+      { product: 'Widget', price: 29.99, quantity: 2 },
+      { product: 'Gadget', price: 49.99, quantity: 1 }
+    ],
+    total: 109.97
+  },
+  returnFile: true,
+  sandbox: false
+})
+
+console.log('PDF generated:', result.data)
+console.log('Document ID:', result.documentId)"
+        />
+
+        <SdkExample
+          title="Get Usage Statistics"
+          description="View document generation usage statistics"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Get usage statistics
+const usage = await client.getUsageStats()
+
+console.log('Usage stats:', usage.stats)
+
+// List generation records with pagination
+const records = await client.listGenerationRecords({
+  page: 1,
+  limit: 10
+})
+
+console.log('Recent generations:', records.records)"
+        />
+      </div>
 
       <!-- Additional Info -->
       <div class="mt-12 bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
@@ -176,13 +232,7 @@ console.log('Daily breakdown:', stats.data.stats)`"
               <strong class="text-white">Template Data:</strong> Use the <code class="text-blue-400 bg-slate-950/50 px-2 py-1 rounded">data</code> field to pass variables that will be injected into your template using Handlebars syntax.
             </p>
           </div>
-          <div class="flex gap-3">
-            <span class="text-blue-400 text-xl">•</span>
-            <p>
-              <strong class="text-white">Storage Options:</strong> Configure external storage (S3, Azure Blob, etc.) to automatically save generated PDFs to your cloud storage.
-            </p>
-          </div>
-          <div class="flex gap-3">
+          <!--<div class="flex gap-3">
             <span class="text-blue-400 text-xl">•</span>
             <p>
               <strong class="text-white">Async Generation:</strong> For large documents, set <code class="text-blue-400 bg-slate-950/50 px-2 py-1 rounded">returnPdf: false</code> to receive immediate response with document ID and retrieve the PDF later.
@@ -193,7 +243,7 @@ console.log('Daily breakdown:', stats.data.stats)`"
             <p>
               <strong class="text-white">Rate Limits:</strong> Document generation is subject to rate limits based on your plan. Check your usage stats regularly to monitor consumption.
             </p>
-          </div>
+          </div>-->
         </div>
       </div>
         </div>

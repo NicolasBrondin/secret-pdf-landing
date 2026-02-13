@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const viewMode = ref<'reference' | 'sdk'>('sdk')
+
 useHead({
   title: 'Authentication - Secret PDF Documentation',
   meta: [
@@ -32,6 +34,9 @@ useHead({
         </p>
       </div>
 
+      <!-- View Toggle -->
+      <DocsViewToggle v-model="viewMode" />
+
       <!-- Auth Methods -->
       <div class="mb-12 grid md:grid-cols-2 gap-6">
         <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
@@ -50,18 +55,19 @@ useHead({
 
       
 
-
-      <!-- Recent Activity -->
-      <ApiEndpoint
-        method="GET"
-        path="/me/recent-activity"
-        title="Get Recent Activity"
-        description="Get recent activity and statistics for the user"
-        :responses="[
-          {
-            status: 200,
-            description: 'Recent activity',
-            schema: `{
+      <!-- API Reference View -->
+      <div v-if="viewMode === 'reference'">
+        <!-- Recent Activity -->
+        <ApiEndpoint
+          method="GET"
+          path="/me/recent-activity"
+          title="Get Recent Activity"
+          description="Get recent activity and statistics for the user"
+          :responses="[
+            {
+              status: 200,
+              description: 'Recent activity',
+              schema: `{
   &quot;success&quot;: true,
   &quot;stats&quot;: {
     &quot;totalTemplates&quot;: 1234,
@@ -83,9 +89,29 @@ useHead({
     }
   ]
 }`
-          }
-        ]"
-      />
+            }
+          ]"
+        />
+      </div>
+
+      <!-- SDK Examples View -->
+      <div v-else>
+        <SdkExample
+          title="Get Generation Statistics"
+          description="Retrieve generation statistics for your account"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Get generation statistics
+const stats = await client.getGenerationStats()
+
+console.log('Total documents generated:', stats.stats.totalDocuments)
+console.log('Documents this month:', stats.stats.documentsThisMonth)"
+        />
+      </div>
 
       <!-- Security Info -->
       <div class="mt-12 bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
