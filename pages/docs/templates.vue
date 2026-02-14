@@ -55,7 +55,7 @@ useHead({
             description: 'Templates retrieved successfully',
             schema: `{
   &quot;success&quot;: true,
-  &quot;templates&quot;: [
+  &quot;data&quot;: [
     {
       &quot;id&quot;: &quot;123abc&quot;,
       &quot;name&quot;: &quot;Invoice Template&quot;,
@@ -68,16 +68,7 @@ useHead({
 }`
           }
         ]"
-        :code-example="`import { TemplatesApi, Configuration } from '@secret-pdf/sdk'
-
-const config = new Configuration({
-  accessToken: 'your-bearer-token'
-})
-
-const api = new TemplatesApi(config)
-const templates = await api.templatesGet()
-
-console.log('Templates:', templates.templates)`"
+        
       />
 
       <!-- Create Template -->
@@ -87,8 +78,9 @@ console.log('Templates:', templates.templates)`"
         title="Create Template"
         description="Create a new HTML template"
         :request-body="`{
-  &quot;templateName&quot;: &quot;Invoice Template&quot;,
-  &quot;templateContent&quot;: &quot;<main>...&lt;/main>&quot;
+  &quot;name&quot;: &quot;Invoice Template&quot;,
+  &quot;content&quot;: &quot;<main>...&lt;/main>&quot;
+  &quot;size&quot;: &quot;A4&quot;
 }`"
         :responses="[
           {
@@ -111,27 +103,7 @@ console.log('Templates:', templates.templates)`"
             description: 'Invalid template data'
           }
         ]"
-        :code-example="`const response = await api.templatesPost({
-  templatesPostRequest: {
-    name: 'Invoice Template',
-    html: \`<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body { font-family: Arial, sans-serif; }
-    .invoice { max-width: 800px; margin: 0 auto; }
-  </style>
-</head>
-<body>
-  <div class=&quot;invoice&quot;>
-    <h1>Invoice #{{orderNumber}}</h1>
-    <p>Customer: {{name}}</p>
-    <p>Email: {{email}}</p>
-  </div>
-</body>
-</html>\`
-  }
-})`"
+        
       />
 
       <!-- Get Template -->
@@ -151,6 +123,7 @@ console.log('Templates:', templates.templates)`"
   &quot;id&quot;: &quot;template-123&quot;,
   &quot;name&quot;: &quot;Invoice Template&quot;,
   &quot;content&quot;: &quot;<!DOCTYPE html>...&quot;,
+  &quot;size&quot;: &quot;A4&quot;,
   &quot;createdAt&quot;: &quot;2026-02-01T10:00:00Z&quot;
 }`
           },
@@ -159,9 +132,7 @@ console.log('Templates:', templates.templates)`"
             description: 'Template not found'
           }
         ]"
-        :code-example="`const template = await api.templatesTemplateIdGet({
-  templateId: 'template-123'
-})`"
+        
       />
 
       <!-- Update Template -->
@@ -174,8 +145,9 @@ console.log('Templates:', templates.templates)`"
           { name: 'templateId', type: 'string', required: true, description: 'Template ID' }
         ]"
         :request-body="`{
-  &quot;templateName&quot;: &quot;Updated Invoice Template&quot;,
-  &quot;templateContent&quot;: &quot;<!DOCTYPE html>...&lt;/html>&quot;
+  &quot;name&quot;: &quot;Updated Invoice Template&quot;,
+  &quot;content&quot;: &quot;<!DOCTYPE html>...&lt;/html>&quot;
+  &quot;size&quot;: &quot;Letter&quot;
 }`"
         :responses="[
           {
@@ -183,13 +155,7 @@ console.log('Templates:', templates.templates)`"
             description: 'Template updated successfully'
           }
         ]"
-        :code-example="`await api.templatesTemplateIdPut({
-  templateId: 'template-123',
-  templatesTemplateIdPutRequest: {
-    name: 'Updated Invoice Template',
-    html: '<!DOCTYPE html>...'
-  }
-})`"
+        
       />
 
       <!-- Delete Template -->
@@ -207,9 +173,7 @@ console.log('Templates:', templates.templates)`"
             description: 'Template deleted successfully'
           }
         ]"
-        :code-example="`await api.templatesTemplateIdDelete({
-  templateId: 'template-123'
-})`"
+        
       />
 
       <!-- AI: Generate from Prompt -->
@@ -235,13 +199,7 @@ console.log('Templates:', templates.templates)`"
 }`
           }
         ]"
-        :code-example="`const response = await api.templatesGenerateFromPromptPost({
-  templatesGenerateFromPromptPostRequest: {
-    prompt: 'Create a professional invoice template with company logo, billing and shipping addresses, itemized table with quantities and prices, subtotal, tax, and total'
-  }
-})
-
-console.log('Generated template ID:', response.data.id)`"
+        
       />
 
       <!-- AI: Generate from PDF -->
@@ -271,15 +229,9 @@ console.log('Generated template ID:', response.data.id)`"
             description: 'PDF processing failed'
           }
         ]"
-        :code-example="`const formData = new FormData()
-formData.append('file', pdfFile)
-
-const response = await api.templatesGenerateFromPdfPost({
-  file: pdfFile
-})
-
-console.log('Template generated:', response.data.id)`"
-      />      </div>
+        
+      />
+    </div>
 
       <!-- SDK Examples View -->
       <div v-else>
@@ -295,9 +247,9 @@ const client = new SecretPDFClient({
 // List all templates
 const response = await client.listTemplates()
 
-console.log('Templates:', response.templates)
-response.templates.forEach(template => {
-  console.log(`- ${template.templateName} (ID: ${template.id})`)  
+console.log('Templates:', response.data)
+response.data.forEach(template => {
+  console.log(`- ${template.name} (ID: ${template.id})`)  
 })"
         />
 
@@ -312,9 +264,9 @@ const client = new SecretPDFClient({
 
 // Create a new template
 const result = await client.createTemplate({
-  templateName: 'Invoice Template',
-  templateSize: 'A4',
-  templateContent: `<!DOCTYPE html>
+  name: 'Invoice Template',
+  size: 'A4',
+  content: `<!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -332,7 +284,7 @@ const result = await client.createTemplate({
 </html>`
 })
 
-console.log('Template created:', result.template.id)"
+console.log('Template created:', result.data.id)"
         />
 
         <SdkExample
@@ -347,9 +299,9 @@ const client = new SecretPDFClient({
 // Get a template by ID
 const template = await client.getTemplate('template-123')
 
-console.log('Template name:', template.name)
-console.log('Template content:', template.content)
-console.log('Page size:', template.size)"
+console.log('Template name:', template.data.name)
+console.log('Template content:', template.data.content)
+console.log('Page size:', template.data.size)"
         />
 
         <SdkExample
@@ -362,13 +314,13 @@ const client = new SecretPDFClient({
 })
 
 // Update a template
-const updated = await client.updateTemplate({
-  templateId: 'template-123',
-  templateName: 'Updated Invoice Template',
-  templateContent: '<!DOCTYPE html>...'
+const updated = await client.updateTemplate('template-123', {
+  name: 'Updated Invoice Template',
+  content: '<!DOCTYPE html>...'
+  size: 'A4'
 })
 
-console.log('Template updated:', updated.template.id)"
+console.log('Template updated:', updated.data.id)"
         />
 
         <SdkExample
@@ -409,8 +361,8 @@ const result = await client.generateTemplateFromPrompt({
   templateName: 'AI Generated Invoice'
 })
 
-console.log('Generated template ID:', result.template.id)
-console.log('Template name:', result.template.templateName)"
+console.log('Generated template ID:', result.data.id)
+console.log('Template name:', result.data.name)"
         />
 
         <SdkExample
@@ -430,8 +382,8 @@ const pdfBlob = new Blob([pdfBuffer], { type: 'application/pdf' })
 // Generate template from PDF
 const result = await client.generateTemplateFromPdf(pdfBlob)
 
-console.log('Template created from PDF:', result.template.id)
-console.log('Template name:', result.template.templateName)"
+console.log('Template created from PDF:', result.data.id)
+console.log('Template name:', result.data.name)"
         />
       </div>
       <!-- Best Practices -->
