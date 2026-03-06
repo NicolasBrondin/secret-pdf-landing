@@ -20,6 +20,8 @@
             <span>Status</span>
           </a>
           <NuxtLink to="/blog" class="hover:text-white transition-colors duration-200">Blog</NuxtLink>
+          <NuxtLink to="/blog/docraptor-vs-secretpdf" class="hover:text-white transition-colors duration-200">DocRaptor vs SecretPDF</NuxtLink>
+          <NuxtLink to="/blog/pdfshift-vs-secretpdf" class="hover:text-white transition-colors duration-200">PDFShift vs SecretPDF</NuxtLink>
           <NuxtLink to="/privacy" class="hover:text-white transition-colors duration-200">Privacy</NuxtLink>
           <NuxtLink to="/legal" class="hover:text-white transition-colors duration-200">Legal</NuxtLink>
         </div>

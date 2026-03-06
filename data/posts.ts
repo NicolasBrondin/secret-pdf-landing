@@ -955,6 +955,302 @@ Generating them responsibly requires intention.
 
 And in a world where data protection expectations continue to rise, intention is no longer optional.
 `
+},
+{
+  slug: 'docraptor-vs-secretpdf',
+  title: 'DocRaptor vs SecretPDF: A Practical Comparison',
+  description: 'An honest comparison between DocRaptor and SecretPDF, two HTML to PDF generation APIs with different philosophies.',
+  author: 'Nicolas Brondin-Bernard',
+  date: '2026-03-01',
+  readTime: '6 min read',
+  tags: ['Business'],
+  content: `
+<img src="/assets/blog/icons/012-deal.svg" alt="Comparison" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Two Different Generations of PDF APIs
+
+DocRaptor and SecretPDF both solve the same problem: converting HTML into reliable, print-quality PDFs. But they were designed in different technological eras and with different priorities.
+
+[DocRaptor](https://docraptor.com) is a mature, enterprise-focused service built around PrinceXML, a rendering engine known for extremely accurate CSS print support. It has been used for years by large organizations that require stable, high-fidelity document generation.
+
+SecretPDF takes a more modern approach. It focuses on **developer experience, privacy-first architecture, and predictable pricing**, while leveraging modern browser rendering technologies capable of executing dynamic JavaScript before producing the final document.
+
+To better understand the trade-offs between approaches, see [how to choose a PDF generation API in 2026](/blog/pdf-generation-api-how-to-choose-2026).
+
+> Both tools generate PDFs well.  
+> The real difference lies in **philosophy and priorities**.
+
+<img src="/assets/blog/icons/006-code.svg" alt="Rendering" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Rendering Philosophy
+
+DocRaptor relies on PrinceXML, a powerful rendering engine specialized in print-quality layout. It excels at advanced CSS print features and has long been trusted in publishing and enterprise environments.
+
+SecretPDF takes a different route. Instead of relying on a traditional print engine, it uses **modern Chromium-based rendering combined with specialized tooling**. This allows full JavaScript execution before rendering, which is especially useful for generating PDFs containing charts, dashboards, or dynamically generated components.
+
+In practice, this means:
+
+- DocRaptor prioritizes **advanced print layout fidelity**
+- SecretPDF prioritizes **modern web rendering and dynamic content**
+
+Both approaches produce high-quality documents, but they target slightly different use cases. For a deeper look at [how PDFs are structured internally](/blog/anatomy-of-a-pdf-document), the rendering differences become even clearer.
+
+<img src="/assets/blog/icons/019-computer.svg" alt="Developer Experience" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Developer Experience
+
+One of the biggest differences appears during integration.
+
+[DocRaptor](https://docraptor.com) was designed when PDF generation was primarily an enterprise feature. Integration works well, but the experience reflects older API conventions and workflows.
+
+SecretPDF was built with modern developers in mind. The onboarding process focuses on reducing friction and getting a working document quickly.
+
+A typical SecretPDF workflow looks like this:
+
+- Create a template in the dashboard  
+- Preview the result instantly  
+- Send data through the API  
+- Receive a generated PDF  
+
+For most developers, the entire setup takes only a few minutes.
+
+> The goal is simple: **generate your first PDF in under five minutes.**
+
+This developer-first approach also includes SDKs, template previews, and a straightforward HTML-based workflow.
+
+<img src="/assets/blog/icons/046-secure.svg" alt="Privacy" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Privacy and Data Handling
+
+Another major difference is how each platform approaches data handling.
+
+SecretPDF was designed with a **GDPR-first mindset**. Documents are generated and immediately discarded after processing. HTML payloads are not logged, and generated PDFs are not stored by default.
+
+The document lifecycle is intentionally simple:
+
+Receive → Render → Return → Discard.
+
+Future storage features are planned, but only under strict conditions:
+- storage controlled by the client
+- encrypted storage with temporary access links
+
+This model drastically reduces the amount of sensitive data retained by the system. Read more on [GDPR-compliant PDF generation](/blog/gdpr-compliant-pdf-generation).
+
+[DocRaptor](https://docraptor.com) also provides secure processing, but its architecture historically focused more on reliability and enterprise integration rather than strict data minimization.
+
+<img src="/assets/blog/icons/039-money tree.svg" alt="Sustainability" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Sustainability
+
+SecretPDF also positions itself around responsible infrastructure.
+
+All rendering operations are **carbon-offset through [CNaught](https://www.cnaught.com/)**, a provider that filters carbon credit projects based on strict environmental integrity criteria. Learn more about [what carbon-neutral PDF generation actually means](/blog/what-is-a-carbon-neutral-pdf-generation-api).
+
+This does not eliminate emissions — no computing system can — but it ensures that the environmental impact of PDF generation is measured and compensated.
+
+> Carbon neutrality is not about perfection.  
+> It is about accountability.
+
+[DocRaptor](https://docraptor.com) does not currently position itself around environmental impact in the same way.
+
+<img src="/assets/blog/icons/027-pie chart.svg" alt="Pricing" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Pricing Philosophy
+
+Pricing models reflect the different target audiences.
+
+SecretPDF uses a **credit-based system designed to be accessible for small and medium SaaS products**, with generation costs starting around one cent per credit. This makes it predictable and affordable at smaller scales.
+
+[DocRaptor](https://docraptor.com) traditionally targets larger organizations and enterprise workloads. Its pricing structure reflects that positioning.
+
+Neither model is inherently better. They simply serve different types of customers.
+
+## Where DocRaptor Is Stronger
+
+[DocRaptor](https://docraptor.com) remains an excellent product and has clear strengths.
+
+It benefits from:
+
+- **A very mature rendering engine**
+- **Long-standing enterprise adoption**
+- **Proven reliability at large scale**
+
+Organizations that have used DocRaptor for years often value this stability and the advanced CSS print capabilities provided by PrinceXML.
+
+Experience and track record matter, especially in enterprise environments.
+
+<img src="/assets/blog/icons/050-trophy.svg" alt="Strengths" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Where SecretPDF Shines
+
+SecretPDF was built to solve a slightly different problem: making PDF generation **simple, private, and modern**.
+
+Its strengths include:
+
+- **Developer-first API design**
+- **Full JavaScript execution before rendering**
+- **GDPR-first architecture with minimal data retention**
+- **Carbon-neutral infrastructure**
+- **Fast onboarding with template previews**
+
+For modern SaaS products generating invoices, reports, dashboards, or certificates, these priorities often align better with how applications are built today. This is especially relevant given [how many PDFs are generated daily at scale](/blog/how-many-pdfs-are-generated-every-day).
+
+## Choosing Between Them
+
+Both [DocRaptor](https://docraptor.com) and SecretPDF generate excellent PDFs.
+
+If your organization values **long-standing enterprise infrastructure and advanced print CSS features**, DocRaptor is a proven option.
+
+If you prioritize **developer experience, privacy-first architecture, and modern web rendering**, SecretPDF may be a better fit.
+
+> The best PDF API is not the one with the most features.  
+> It is the one aligned with your priorities.
+
+And as the way we build software evolves, those priorities continue to shift.
+`
+},
+
+{
+  slug: 'pdfshift-vs-secretpdf',
+  title: 'PDFShift vs SecretPDF: A Practical Comparison',
+  description: 'A balanced comparison between PDFShift and SecretPDF, two modern HTML to PDF generation APIs built for developers.',
+  author: 'Nicolas Brondin-Bernard',
+  date: '2026-03-05',
+  readTime: '5 min read',
+  tags: ['Business'],
+  content: `
+<img src="/assets/blog/icons/012-deal.svg" alt="Comparison" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Two Modern Approaches to HTML-to-PDF APIs
+
+PDFShift and SecretPDF belong to the same generation of PDF generation tools: APIs built for developers who want to convert HTML into PDFs reliably.
+
+Both services rely on modern browser rendering technologies and provide REST APIs that integrate easily with web applications. On the surface, they solve the same problem. In practice, they emphasize slightly different priorities.
+
+[PDFShift](https://pdfshift.io) focuses on **simplicity, reliability, and accessibility**, while SecretPDF focuses on **developer experience, privacy-first architecture, and advanced rendering capabilities**.
+
+To better understand the broader landscape of PDF generation approaches, see [how to choose a PDF generation API in 2026](/blog/pdf-generation-api-how-to-choose-2026).
+
+> Both tools work well.  
+> The differences appear in workflow, pricing philosophy, and long-term capabilities.
+
+<img src="/assets/blog/icons/006-code.svg" alt="Rendering" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Rendering Approach
+
+[PDFShift](https://pdfshift.io) uses Chromium-based rendering to convert HTML pages into PDFs. This approach mirrors how modern browsers display content, allowing accurate reproduction of layouts built with standard web technologies.
+
+SecretPDF follows a similar philosophy, using modern browser rendering technologies combined with specialized tooling to support dynamic JavaScript execution before the document is rendered.
+
+This is particularly useful when generating documents that contain:
+
+- charts or data visualizations
+- dashboards
+- dynamically generated components
+- client-side rendering frameworks
+
+SecretPDF is also exploring additional capabilities, such as **editable PDF generation**, currently in beta. These features aim to expand what developers can do beyond simple HTML-to-PDF conversion. Understanding [how PDFs are structured internally](/blog/anatomy-of-a-pdf-document) helps explain why editable PDFs require a different approach entirely.
+
+> The goal is not just to render PDFs, but to **extend what PDFs can do inside modern applications**.
+
+<img src="/assets/blog/icons/019-computer.svg" alt="Developer Experience" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Developer Experience
+
+Both platforms aim to make integration simple, but they approach onboarding differently.
+
+[PDFShift](https://pdfshift.io) provides clear documentation and a straightforward REST API. Many developers appreciate its simplicity and the fact that it has been widely used for years across a variety of projects.
+
+SecretPDF emphasizes a developer-first workflow designed to shorten the path from idea to working document.
+
+A typical SecretPDF setup looks like this:
+
+- create a template in the dashboard
+- preview the result instantly
+- send data through the API
+- receive the generated PDF
+
+The platform also offers SDKs and integrations to simplify implementation.
+
+> The objective is simple: **go from zero to a working PDF in minutes**.
+
+For developers building SaaS products, features like template previews and SDK support can significantly reduce iteration time.
+
+<img src="/assets/blog/icons/027-pie chart.svg" alt="Pricing" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Pricing Philosophy
+
+Pricing models reveal another difference between the two platforms.
+
+[PDFShift](https://pdfshift.io) offers a **very generous free plan**, allowing up to 50 PDFs per month. This makes it attractive for experimentation and small personal projects.
+
+However, once projects grow beyond the free tier, pricing moves toward fixed monthly plans.
+
+SecretPDF takes a different approach with a **credit-based usage model**, designed to remain predictable at smaller scales. PDF generation starts around one cent per credit, allowing teams to pay primarily for what they use.
+
+Neither model is inherently better. They simply suit different usage patterns.
+
+<img src="/assets/blog/icons/031-guarantee.svg" alt="Reliability" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Reliability and Adoption
+
+[PDFShift](https://pdfshift.io) has built a strong reputation over time. It is widely used, well-documented, and considered a reliable option for HTML-to-PDF generation.
+
+That track record is valuable. Many teams prefer tools that have proven themselves in production environments across thousands of projects.
+
+SecretPDF is a newer platform, but it aims to address evolving expectations around privacy, sustainability, and developer experience.
+
+> Reliability matters — but so does **how tools evolve with modern infrastructure**.
+
+<img src="/assets/blog/icons/046-secure.svg" alt="Privacy" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Privacy and Infrastructure
+
+SecretPDF was designed with a **privacy-first architecture**.
+
+Generated documents are not stored by default. HTML payloads are processed, rendered, and discarded immediately. Request contents are not logged, minimizing the amount of sensitive data retained by the system.
+
+Infrastructure is also hosted entirely within the European Union, using French datacenters. The only external service used globally is Cloudflare for frontend delivery.
+
+This model aligns with organizations that prioritize **GDPR compliance and strict data handling practices**. For a full breakdown of what GDPR compliance means for PDF generation, see [GDPR-compliant PDF generation](/blog/gdpr-compliant-pdf-generation).
+
+<img src="/assets/blog/icons/039-money tree.svg" alt="Sustainability" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Sustainability
+
+Another distinctive aspect of SecretPDF is its environmental positioning.
+
+All rendering operations are **carbon-offset through [CNaught](https://www.cnaught.com/)**, a provider that filters carbon credit projects based on rigorous environmental standards. Learn more about [what carbon-neutral PDF generation actually means](/blog/what-is-a-carbon-neutral-pdf-generation-api).
+
+While no computing system can eliminate emissions entirely, offsetting helps compensate for the infrastructure footprint associated with large-scale document generation.
+
+> Sustainability in infrastructure is not about perfection.  
+> It is about responsibility.
+
+## Choosing Between PDFShift and SecretPDF
+
+Both [PDFShift](https://pdfshift.io) and SecretPDF provide reliable HTML-to-PDF APIs.
+
+PDFShift is a strong choice if you value:
+
+- a generous free tier
+- a widely adopted service
+- clear documentation
+- straightforward API integration
+
+SecretPDF may be a better fit if your priorities include:
+
+- a **developer-first workflow**
+- SDKs and integrations
+- template previews and fast iteration
+- **privacy-focused architecture**
+- carbon-neutral infrastructure
+- evolving features like editable PDFs
+
+Ultimately, the right choice depends less on the feature list and more on what matters most for your product. And given that [hundreds of millions of PDFs are generated every day](/blog/how-many-pdfs-are-generated-every-day), choosing infrastructure you trust is worth the investment.
+
+> The best PDF generation API is the one that aligns with your **engineering priorities and values**.
+`
 }
 
 ]
