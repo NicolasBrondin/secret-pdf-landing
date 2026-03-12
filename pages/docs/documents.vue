@@ -43,7 +43,46 @@ useHead({
       <ApiEndpoint
         method="POST"
         path="/generate"
-        title="Generate PDF"
+        title="Generate PDF from an HTML content"
+        description="Generate a PDF document from an HTML content with custom data"
+        :parameters="[
+          { name: 'X-API-Key', type: 'string', required: true, description: 'Your API key for authentication' }
+        ]"
+        :request-body="`{
+  &quot;html&quot;: &quot;<div>\\n<h1>{{name}}</h1>\\n<span>{{email}}</span>\\n</div>&quot;,
+  &quot;data&quot;: {                            // Data to inject into template
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;items&quot;: [...]
+  },
+  &quot;returnPdf&quot;: true                   // Return PDF in response (default: true)
+  orientation: 'portrait',                      // Set orientation of the document to generate
+}`"
+        :responses="[
+          {
+            status: 200,
+            description: 'PDF generated successfully',
+            schema: `{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;documentId&quot;: &quot;doc-abc123&quot;,
+    &quot;url&quot;: &quot;https://storage.example.com/documents/invoice.pdf&quot;,
+    &quot;size&quot;: 245678,
+    &quot;generatedAt&quot;: &quot;2026-02-09T12:34:56Z&quot;
+  }
+}`
+          },
+          {
+            status: 401,
+            description: 'Unauthorized - invalid or missing API key'
+          }
+        ]"
+      />
+
+      <ApiEndpoint
+        method="POST"
+        path="/generate"
+        title="Generate PDF from a template"
         description="Generate a PDF document from a template with custom data"
         :parameters="[
           { name: 'X-API-Key', type: 'string', required: true, description: 'Your API key for authentication' }
@@ -169,7 +208,50 @@ console.log('Daily breakdown:', stats.data.stats)`"
       <!-- SDK Examples View -->
       <div v-else>
         <SdkExample
-          title="Generate PDF"
+          title="Generate PDF from an HTML content"
+          description="Generate a PDF document from a template with custom data"
+          code="import { SecretPDFClient } from '@secretpdf/sdk'
+
+const client = new SecretPDFClient({
+  apiKey: 'your-api-key'
+})
+
+// Generate a PDF from a template
+const result = await client.generate({
+  html: `<div>
+  <h1>Client's name: {{name}}</h1>
+  <span>Client's email: {{email}}</span>
+  <span>Order number: {{orderNumber}}</span>
+  {{#each items}}
+    <div>
+      <li>Product: {{items.product}}</li>
+      <li>Price: {{items.price}}</li>
+      <li>Quantity: {{items.quantity}}</li>
+    </div>
+  {{/each}}
+  <span>Total: {{total}}</span>
+</div>`,
+  data: {
+    name: 'John Doe',
+    email: 'john@example.com',
+    orderNumber: 'ORD-001',
+    items: [
+      { product: 'Widget', price: 29.99, quantity: 2 },
+      { product: 'Gadget', price: 49.99, quantity: 1 }
+    ],
+    total: 109.97
+  },
+  returnFile: true,
+  sandbox: false,
+  orientation: 'portrait'
+})
+
+console.log('PDF generated:', result.data)
+console.log('Document ID:', result.documentId)"
+        />
+
+        <SdkExample
+          title="Generate PDF from a template"
           description="Generate a PDF document from a template with custom data"
           code="import { SecretPDFClient } from '@secretpdf/sdk'
 

@@ -93,6 +93,7 @@ useHead({
     &quot;id&quot;: &quot;template-123&quot;,
     &quot;name&quot;: &quot;Invoice Template&quot;,
     &quot;size&quot;: &quot;A4&quot;,
+    &quot;orientation&quot;: &quot;portrait&quot;,
     &quot;content&quot;: &quot;<!DOCTYPE html>...&quot;,
     &quot;createdAt&quot;: &quot;2026-02-09T12:00:00Z&quot;
   }
@@ -146,6 +147,7 @@ useHead({
         ]"
         :request-body="`{
   &quot;name&quot;: &quot;Updated Invoice Template&quot;,
+  &quot;orientation&quot;: &quot;portrait&quot;,
   &quot;content&quot;: &quot;<!DOCTYPE html>...&lt;/html>&quot;
   &quot;size&quot;: &quot;Letter&quot;
 }`"
@@ -267,6 +269,7 @@ const result = await client.createTemplate({
   name: 'Invoice Template',
   size: 'A4',
   content: `<!DOCTYPE html>
+  orientation: 'portrait',
 <html>
 <head>
   <style>
@@ -318,6 +321,7 @@ const updated = await client.updateTemplate('template-123', {
   name: 'Updated Invoice Template',
   content: '<!DOCTYPE html>...'
   size: 'A4'
+  orientation: 'portrait'
 })
 
 console.log('Template updated:', updated.data.id)"
