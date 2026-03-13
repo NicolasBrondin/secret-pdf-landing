@@ -268,8 +268,8 @@ const client = new SecretPDFClient({
 const result = await client.createTemplate({
   name: 'Invoice Template',
   size: 'A4',
-  content: `<!DOCTYPE html>
   orientation: 'portrait',
+  content: `<!DOCTYPE html>
 <html>
 <head>
   <style>
