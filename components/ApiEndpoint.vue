@@ -155,6 +155,7 @@ onMounted(() => {
           <div class="bg-slate-950/50 rounded-xl p-4">
             <pre v-if="body"><code :ref="el => requestBodyRef[index] = el as HTMLElement | null" class="hljs language-json text-xs overflow-x-auto block"></code></pre>
           </div>
+          <p class="text-slate-300 pt-2" v-if="index < requestBodies.length - 1">Alternative request</p>
         </div>
       </div>
     </div>
