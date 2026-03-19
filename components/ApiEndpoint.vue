@@ -25,7 +25,7 @@ interface Props {
   title: string
   description: string
   parameters?: Parameter[]
-  requestBody?: string
+  requestBodies?: string[]
   responses?: Response[]
   codeExample?: string
 }
@@ -41,7 +41,7 @@ const methodColors = {
 
 const showCode = ref(false)
 const codeRef = ref<HTMLElement | null>(null)
-const requestBodyRef = ref<HTMLElement | null>(null)
+const requestBodyRef = ref<(HTMLElement | null)[]>([])
 const responseRefs = ref<(HTMLElement | null)[]>([])
 
 const highlightCode = () => {
@@ -52,9 +52,13 @@ const highlightCode = () => {
 }
 
 const highlightRequestBody = () => {
-  if (requestBodyRef.value && props.requestBody) {
-    requestBodyRef.value.textContent = props.requestBody
-    hljs.highlightElement(requestBodyRef.value)
+  if (requestBodyRef.value && props.requestBodies) {
+    props.requestBodies.forEach((body, index) => {
+      if (body && requestBodyRef.value[index]) {
+        requestBodyRef.value[index]!.textContent = body
+        hljs.highlightElement(requestBodyRef.value[index]!)
+      }
+    });
   }
 }
 
@@ -143,10 +147,15 @@ onMounted(() => {
     </div>
 
     <!-- Request Body -->
-    <div v-if="requestBody" class="mb-6">
-      <h4 class="text-sm font-semibold text-white mb-3 uppercase tracking-wide">Request Body</h4>
-      <div class="bg-slate-950/50 rounded-xl p-4">
-        <pre><code ref="requestBodyRef" class="hljs language-json text-sm overflow-x-auto block"></code></pre>
+    <div v-if="requestBodies && requestBodies.length > 0" class="mb-6">
+      <div class="space-y-3">
+        <h4 v-if="requestBodies.length == 1" class="text-sm font-semibold text-white mb-3 uppercase tracking-wide">Request Body</h4>
+        <h4 v-else class="text-sm font-semibold text-white mb-3 uppercase tracking-wide">Request Bodies</h4>
+        <div v-for="(body, index) in requestBodies">
+          <div class="bg-slate-950/50 rounded-xl p-4">
+            <pre v-if="body"><code :ref="el => requestBodyRef[index] = el as HTMLElement | null" class="hljs language-json text-xs overflow-x-auto block"></code></pre>
+          </div>
+        </div>
       </div>
     </div>
 
