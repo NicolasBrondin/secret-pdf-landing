@@ -81,6 +81,8 @@ useHead({
   &quot;name&quot;: &quot;Invoice Template&quot;,
   &quot;content&quot;: &quot;<main>...&lt;/main>&quot;
   &quot;size&quot;: &quot;A4&quot;
+  &quot;header&quot;: &quot;Header content&quot;
+  &quot;footer&quot;: &quot;Footer content&quot;
 }`"
         :responses="[
           {

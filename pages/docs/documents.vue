@@ -57,6 +57,8 @@ useHead({
   },
   &quot;returnPdf&quot;: true                   // Return PDF in response (default: true)
   orientation: 'portrait',                      // Set orientation of the document to generate
+  &quot;header&quot;: &quot;Header&quot;,       // Set header of the document
+  &quot;footer&quot;: &quot;Footer&quot,        // Set footer of the document
 }`"
         :responses="[
           {
