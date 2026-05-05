@@ -77,13 +77,14 @@ useHead({
         path="/templates"
         title="Create Template"
         description="Create a new HTML template"
-        :request-body="`{
+        :request-bodies="[`{
   &quot;name&quot;: &quot;Invoice Template&quot;,
   &quot;content&quot;: &quot;<main>...&lt;/main>&quot;
   &quot;size&quot;: &quot;A4&quot;
   &quot;header&quot;: &quot;Header content&quot;
   &quot;footer&quot;: &quot;Footer content&quot;
 }`"
+}`]"
         :responses="[
           {
             status: 200,
@@ -147,12 +148,12 @@ useHead({
         :parameters="[
           { name: 'templateId', type: 'string', required: true, description: 'Template ID' }
         ]"
-        :request-body="`{
+        :request-bodies="[`{
   &quot;name&quot;: &quot;Updated Invoice Template&quot;,
   &quot;orientation&quot;: &quot;portrait&quot;,
   &quot;content&quot;: &quot;<!DOCTYPE html>...&lt;/html>&quot;
   &quot;size&quot;: &quot;Letter&quot;
-}`"
+}`]"
         :responses="[
           {
             status: 200,
@@ -186,9 +187,9 @@ useHead({
         path="/templates/generate-from-prompt"
         title="Generate Template from Prompt (AI)"
         description="Generate HTML template using AI from a text prompt"
-        :request-body="`{
+        :request-bodies="[`{
   &quot;prompt&quot;: &quot;Create an invoice template with company logo, billing details, and itemized list&quot;
-}`"
+}`]"
         :responses="[
           {
             status: 200,
@@ -270,8 +271,8 @@ const client = new SecretPDFClient({
 const result = await client.createTemplate({
   name: 'Invoice Template',
   size: 'A4',
-  content: `<!DOCTYPE html>
   orientation: 'portrait',
+  content: `<!DOCTYPE html>
 <html>
 <head>
   <style>
