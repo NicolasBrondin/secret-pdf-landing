@@ -20,6 +20,7 @@
             <span>Status</span>
           </a>
           <NuxtLink to="/blog" class="hover:text-white transition-colors duration-200">Blog</NuxtLink>
+          <NuxtLink to="/tools/pdf-anonymizer" class="hover:text-white transition-colors duration-200">Free PDF Anonymizer</NuxtLink>
           <NuxtLink to="/blog/docraptor-vs-secretpdf" class="hover:text-white transition-colors duration-200">DocRaptor vs SecretPDF</NuxtLink>
           <NuxtLink to="/blog/pdfshift-vs-secretpdf" class="hover:text-white transition-colors duration-200">PDFShift vs SecretPDF</NuxtLink>
           <NuxtLink to="/privacy" class="hover:text-white transition-colors duration-200">Privacy</NuxtLink>
