@@ -48,6 +48,48 @@ useHead({
         :parameters="[
           { name: 'X-API-Key', type: 'string', required: true, description: 'Your API key for authentication' }
         ]"
+        :request-body="`{
+  &quot;html&quot;: &quot;<div>\\n<h1>{{name}}</h1>\\n<span>{{email}}</span>\\n</div>&quot;,
+  &quot;data&quot;: {                            // Data to inject into template
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;items&quot;: [...]
+  },
+  &quot;returnPdf&quot;: true                   // Return PDF in response (default: true)
+  orientation: 'portrait',                      // Set orientation of the document to generate
+  &quot;header&quot;: &quot;Header&quot;,       // Set header of the document
+  &quot;footer&quot;: &quot;Footer&quot,        // Set footer of the document
+}`"
+        :responses="[
+          {
+            status: 200,
+            description: 'PDF generated successfully',
+            schema: `{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;documentId&quot;: &quot;doc-abc123&quot;,
+    &quot;url&quot;: &quot;https://storage.example.com/documents/invoice.pdf&quot;,
+    &quot;size&quot;: 245678,
+    &quot;generatedAt&quot;: &quot;2026-02-09T12:34:56Z&quot;
+  }
+}`
+          },
+          {
+            status: 401,
+            description: 'Unauthorized - invalid or missing API key'
+          }
+        ]"
+      />
+
+      <ApiEndpoint
+        method="POST"
+        path="/generate"
+        title="Generate PDF from a template"
+        description="Generate a PDF document from a template with custom data"
+        :parameters="[
+          { name: 'X-API-Key', type: 'string', required: true, description: 'Your API key for authentication' }
+        ]"
+        :request-body="`{
         :request-bodies="[`{
   &quot;html&quot;: &quot;<main><h1>Invoice</h1><p>To: John Doe</p></main>&quot;,
   &quot;size&quot;: &quot;A4&quot;,                          // Set size of the document to generate
