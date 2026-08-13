@@ -41,9 +41,11 @@ useHead({
     { property: 'og:title', content: 'Free PDF Anonymizer — Redact PDFs in Your Browser' },
     { property: 'og:description', content: 'Drag, drop, redact. Anonymize PDFs for free without ever uploading them — 100% client-side, GDPR & HIPAA compliant.' },
     { property: 'og:type', content: 'website' },
+    { property: 'og:image', content: '/open-graph/pdf-anonymizer.jpg' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Free PDF Anonymizer — Redact PDFs in Your Browser' },
     { name: 'twitter:description', content: 'Drag, drop, redact. Anonymize PDFs for free without ever uploading them — 100% client-side, GDPR & HIPAA compliant.' },
+    { name: 'twitter:image', content: '/open-graph/pdf-anonymizer.jpg' },
   ],
 })
 </script>
