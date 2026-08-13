@@ -15,7 +15,7 @@ const faqItems = [
   },
   {
     question: 'Is this tool GDPR and HIPAA compliant?',
-    answer: 'Yes. Since your document and the personal data inside it are never transmitted or stored anywhere, there is no processing of personal data by us to be compliant about — the file stays entirely on your device, which is the strongest privacy posture GDPR and HIPAA both recognize.',
+    answer: 'Yes. Since your document and the personal data inside it are never transmitted or stored anywhere, there is no processing of personal data by us to be compliant about - the file stays entirely on your device, which is the strongest privacy posture GDPR and HIPAA both recognize.',
   },
   {
     question: 'Is it really free?',
@@ -23,29 +23,29 @@ const faqItems = [
   },
   {
     question: 'What kind of redaction does it perform?',
-    answer: 'It performs a real binary text replacement directly inside the PDF’s content streams — the original characters are removed from the file’s bytes, not just visually covered. You can optionally also draw a black box over each redacted span for a familiar "redacted" look.',
+    answer: 'It performs a real binary text replacement directly inside the PDF’s content streams - the original characters are removed from the file’s bytes, not just visually covered. You can optionally also draw a black box over each redacted span for a familiar "redacted" look.',
   },
   {
     question: 'Will it catch every scanned document?',
-    answer: 'It works on PDFs that contain real, selectable text. Scanned/rasterized pages (an image of text with no text layer) can’t be edited this way since there’s no text to replace — those would need OCR first.',
+    answer: 'It works on PDFs that contain real, selectable text. Scanned/rasterized pages (an image of text with no text layer) can’t be edited this way since there’s no text to replace - those would need OCR first.',
   },
 ]
 
 useHead({
-  title: 'Free PDF Anonymizer — Redact PDFs in Your Browser | Secret PDF',
+  title: 'Free PDF Anonymizer - Redact PDFs in Your Browser | Secret PDF',
   meta: [
     {
       name: 'description',
-      content: 'Anonymize and redact PDFs for free, directly in your browser. Remove names, emails, phone numbers, dates and more — no upload, no signup, GDPR & HIPAA compliant.',
+      content: 'Anonymize and redact PDFs for free, directly in your browser. Remove names, emails, phone numbers, dates and more - no upload, no signup, GDPR & HIPAA compliant.',
     },
-    { property: 'og:title', content: 'Free PDF Anonymizer — Redact PDFs in Your Browser' },
-    { property: 'og:description', content: 'Drag, drop, redact. Anonymize PDFs for free without ever uploading them — 100% client-side, GDPR & HIPAA compliant.' },
+    { property: 'og:title', content: 'Free PDF Anonymizer - Redact PDFs in Your Browser' },
+    { property: 'og:description', content: 'Drag, drop, redact. Anonymize PDFs for free without ever uploading them - 100% client-side, GDPR & HIPAA compliant.' },
     { property: 'og:type', content: 'website' },
-    { property: 'og:image', content: '/open-graph/pdf-anonymizer.jpg' },
+    { property: 'og:image', content: 'https://www.secretpdf.io/open-graph/pdf-anonymizer.jpg' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Free PDF Anonymizer — Redact PDFs in Your Browser' },
-    { name: 'twitter:description', content: 'Drag, drop, redact. Anonymize PDFs for free without ever uploading them — 100% client-side, GDPR & HIPAA compliant.' },
-    { name: 'twitter:image', content: '/open-graph/pdf-anonymizer.jpg' },
+    { name: 'twitter:title', content: 'Free PDF Anonymizer - Redact PDFs in Your Browser' },
+    { name: 'twitter:description', content: 'Drag, drop, redact. Anonymize PDFs for free without ever uploading them - 100% client-side, GDPR & HIPAA compliant.' },
+    { name: 'twitter:image', content: 'https://www.secretpdf.io/open-graph/pdf-anonymizer.jpg' },
   ],
 })
 </script>
