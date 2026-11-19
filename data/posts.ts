@@ -1251,6 +1251,109 @@ Ultimately, the right choice depends less on the feature list and more on what m
 
 > The best PDF generation API is the one that aligns with your **engineering priorities and values**.
 `
+},
+
+{
+  slug: 'naivegames-case-study-parent-progress-reports',
+  title: 'NaiveGames Case Study: PDF Progress Reports for an Educational Game',
+  description: 'How NaiveGames uses the SecretPDF API to turn gameplay data from Catventure into clear PDF progress reports that show parents what their kids are learning.',
+  author: 'Nicolas Brondin-Bernard',
+  date: '2026-11-19',
+  readTime: '5 min read',
+  tags: ['Business', 'Case Study', 'EdTech'],
+  content: `
+<img src="/assets/blog/icons/033-game.svg" alt="Educational game" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## About NaiveGames
+
+[NaiveGames](https://naive.sh) makes **real educational games** for kids: games that are fun first, and teach along the way. Their first title, [Catventure](https://naive.sh/games/catventure), is a browser game for children aged 7 to 8. Kids help Mochi the cat escape from RoboLab, a building full of robots, by solving challenges along the way.
+
+Each challenge is a piece of the 2nd-grade curriculum in disguise: math duels for additions and subtractions, spelling passwords, shape padlocks, broken machines that need the right measurement, clocks to read and change to count. The game runs in the browser on computers, tablets and phones, with nothing to install, no ads and no in-app purchases. It is available in [English](https://naive.sh) and [French](https://naive.sh/fr).
+
+> A good educational game hides the exercise.
+> A good parent report shows it again.
+
+<img src="/assets/blog/icons/044-feedback.svg" alt="Parents" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## The Challenge: Showing Parents What Kids Actually Learn
+
+When a child plays an educational game, parents usually see only the surface: their kid is having fun with a cat and some robots. What they can't see is the learning underneath. Which skills did they practice? Are they getting the answers right? Is something still giving them trouble?
+
+[NaiveGames](https://naive.sh) already had this data. Every answer in [Catventure](https://naive.sh/games/catventure) is linked to a skill, so the game knows how many exercises a child answered, in which subjects, and how well. The challenge was to give that information back to parents in a format that is:
+
+- **easy to read** for non-technical parents
+- **easy to keep, print or forward** to a teacher or a grandparent
+- **consistent**, so a report looks the same on every device
+- **respectful of children's data**
+
+A dashboard inside the game would have met only part of that list. Parents would have needed to log in again, and the information would stay locked inside the app. A PDF report covers all four points.
+
+<img src="/assets/blog/icons/013-report.svg" alt="Progress report" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## The Solution: A Progress Report Generated on Demand
+
+NaiveGames uses the SecretPDF API to generate a **"Your child's progress" report** from the child's real gameplay data. You can [open an example report here](/examples/naivegames.pdf) (in French, as received by a French-speaking family).
+
+A single page tells the whole story:
+
+- **Time played this week**, with a day-by-day view of the last seven days
+- **Exercises answered**, and how many different skills they cover
+- **Correct answers**, as a percentage and as a raw count
+- **Stickers earned**, unlocked from what the child really did in the game, as something to celebrate together
+- **Everything they are working on**, grouped by subject (for example *Mathematics: plane shapes, addition*), with a success rate and a status such as *Started* or *Mastered* for each skill
+- **Play sessions**, listing when the child played, for how long, and how well
+
+The report follows the same visual identity as [Catventure](https://naive.sh/games/catventure): rounded cards, playful headings, and a sticker that looks like it could be peeled off the page. It doesn't look like an export from a spreadsheet. It feels like the game.
+
+> The best reports don't add information.
+> They **translate** information parents already have a right to see.
+
+<img src="/assets/blog/icons/006-code.svg" alt="Integration" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## How It Works
+
+The integration follows the standard SecretPDF workflow:
+
+- the report layout is designed once as an HTML **template**, with all the styling, fonts and components of the game's brand
+- when a parent asks for a report, the game backend collects the child's stats (time played, answers per skill, sessions, stickers)
+- that data is sent to the SecretPDF API, which renders the template into a PDF
+- the PDF goes straight back to the parent
+
+Because the template is plain HTML and CSS, the NaiveGames team can build the report with the same tools they use for the game's web interface. There is no PDF library to learn, and they don't have to run a headless browser on their own servers. For more details on this workflow, see the [templates documentation](/docs/templates) and the [documents documentation](/docs/documents).
+
+This is the trade-off we described in [how to choose a PDF generation API](/blog/pdf-generation-api-how-to-choose-2026): a small studio should spend its time making games, not maintaining rendering infrastructure.
+
+<img src="/assets/blog/icons/046-secure.svg" alt="Privacy" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## Why Privacy Mattered Even More Here
+
+These reports contain information about **children**: what they know, what they struggle with, when they play. That is exactly the kind of data that should not stay on third-party servers.
+
+SecretPDF was built for this kind of use case:
+
+- generated documents are **not stored by default**
+- request contents are **not logged**
+- the infrastructure is hosted in the **European Union**, in French datacenters
+
+The report data is used to render the PDF, then discarded. For a studio that serves families in France and elsewhere in Europe, this keeps the PDF step simple from a GDPR point of view. We cover the details in [GDPR-compliant PDF generation](/blog/gdpr-compliant-pdf-generation).
+
+<img src="/assets/blog/icons/028-chart.svg" alt="Takeaways" style="width: 128px; height: 128px; margin: 2rem auto; display: block;" />
+
+## What Other EdTech Products Can Learn From This
+
+The [NaiveGames](https://naive.sh) approach works for any product that turns activity into learning, from language apps to coding platforms to tutoring tools:
+
+- **Collect learning data per skill, not just per session.** That is what makes a report meaningful.
+- **Write for parents, not for analysts.** Plain words like "Started" and "Mastered" beat raw scores.
+- **Celebrate progress.** The stickers section gives parents a reason to talk with their child about what they learned.
+- **Make it portable.** A PDF can be printed, archived, or shared with a teacher, and it doesn't need an account to open.
+- **Treat children's data with care.** Choose infrastructure that doesn't keep what it doesn't need.
+
+Want to see it in action? Give [Catventure](https://naive.sh/games/catventure) a try (the demo is free and needs no sign-up), or browse the rest of the [NaiveGames](https://naive.sh) catalog.
+
+> PDFs are often seen as paperwork.
+> For NaiveGames, they are **a bridge between a child's play and their parents' understanding**.
+`
 }
 
 ]

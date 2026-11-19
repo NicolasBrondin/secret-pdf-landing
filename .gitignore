@@ -37,3 +37,5 @@ dist-ssr
 # Nuxt
 .nuxt
 .output
+
+.claude
